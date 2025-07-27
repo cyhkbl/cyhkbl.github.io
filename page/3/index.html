@@ -1,593 +1,985 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8" />
-    <title>空白棱の小站</title>
-    <meta name="author" content="空白棱" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    />
-    <link rel="icon" href="/images/avatar.png" />
-    <link rel="preconnect" href="https://s4.zstatic.net" />
-<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
-<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-<link rel="preconnect" href="https://fonts.googleapis.cn" />
-<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
-<link
-    rel="stylesheet"
-    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
-/>
-<script> const mixins = {}; </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="The Redefine Team">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://cyhkbl.github.io/page/3/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="空白棱の小站">
+<meta property="og:url" content="http://cyhkbl.github.io/page/3/index.html">
+<meta property="og:site_name" content="空白棱の小站">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://cyhkbl.github.io/images/redefine-og.webp">
+<meta property="article:author" content="空白棱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cyhkbl.github.io/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Theme Redefine - Redefine Your Hexo Journey.
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
 
 
-<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
-<link
-    rel="stylesheet"
-    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
-/>
-<script src="/js/lib/highlight.js"></script>
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
 
 
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
 
-<script src="/js/lib/preview.js"></script>
+    
 
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
 
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
 
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
 
+    <script id="hexo-configurations">
+    window.config = {"hostname":"cyhkbl.github.io","root":"/","language":"zh-CN"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
 
-<script src="/js/lib/home.js"></script>
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
 
-<link rel="stylesheet" href="/css/main.css" />
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
 
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
 <meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="空白棱の小站" type="application/atom+xml">
 </head>
+
+
+
 <body>
-    <div id="layout">
-        <transition name="fade">
-            <div id="loading" v-show="loading">
-                <div id="loading-circle">
-                    <h2>LOADING</h2>
-                    <p>加载过慢请开启缓存 浏览器默认开启</p>
-                    <img src="/images/loading.gif" />
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+	<style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
+</div>
+
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                <h1>
+                Theme Redefine
+                </h1>
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="active"
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    首页
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
                 </div>
             </div>
-        </transition>
-        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
-    <nav id="desktop-menu">
-        <a class="title" href="/">
-            <span>空白棱の小站</span>
-        </a>
-        
-        <a href="/">
-            <i class="fa-solid fa-house fa-fw"></i>
-            <span>&ensp;Home</span>
-        </a>
-        
-        <a href="/about">
-            <i class="fa-solid fa-id-card fa-fw"></i>
-            <span>&ensp;About</span>
-        </a>
-        
-        <a href="/archives">
-            <i class="fa-solid fa-box-archive fa-fw"></i>
-            <span>&ensp;Archives</span>
-        </a>
-        
-        <a href="/categories">
-            <i class="fa-solid fa-bookmark fa-fw"></i>
-            <span>&ensp;Categories</span>
-        </a>
-        
-        <a href="/tags">
-            <i class="fa-solid fa-tags fa-fw"></i>
-            <span>&ensp;Tags</span>
-        </a>
-        
-    </nav>
-    <nav id="mobile-menu">
-        <div class="title" @click="showMenuItems = !showMenuItems">
-            <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;空白棱の小站</span>
         </div>
-        <transition name="slide">
-            <div class="items" v-show="showMenuItems">
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
                 
-                <a href="/">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-house fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
-                    </div>
-                </a>
-                
-                <a href="/about">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-id-card fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
-                    </div>
-                </a>
-                
-                <a href="/archives">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-box-archive fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
-                    </div>
-                </a>
-                
-                <a href="/categories">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-bookmark fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
-                    </div>
-                </a>
-                
-                <a href="/tags">
-                    <div class="item">
-                        <div style="min-width: 20px; max-width: 50px; width: 10%">
-                            <i class="fa-solid fa-tags fa-fw"></i>
-                        </div>
-                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
-                    </div>
-                </a>
-                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
+                           href="/"
+                        >
+                            <span>
+                                首页
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+			<div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            
+            <div class="sidebar-content" >
+                <div class="avatar flex justify-center">
+    <img src="/images/redefine-avatar.svg">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">The Redefine Team</div>
+    
+        <div class="label">Lv3</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">标签</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">分类</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
+        <div class="label text-third-text-color text-sm">文章</div>
+    </a>
+</div>
             </div>
-        </transition>
-    </nav>
-</div>
-<transition name="fade">
-    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
-</transition>
+        
 
-        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div id="home-head">
-    <div
-        id="home-background"
-        ref="homeBackground"
-        data-images="/images/background.png"
-    ></div>
-    <div id="home-info" @click="homeClick">
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="loop"></span>
-        <span class="info">
-            <div class="wrap">
-                <h1>空白棱の小站</h1>
-                <h3></h3>
-                <h5></h5>
-            </div>
-        </span>
     </div>
 </div>
-<div
-    id="home-posts-wrap"
-    ref="homePostsWrap"
-    true
->
-    <div id="home-posts">
-        
 
-<div class="post">
-    <a href="/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89%20%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9%20Web3%20%E8%AF%B4%E4%B8%8D/">
-        <h2 class="post-title">（转载）（译） 捍卫自由的互联网，对 Web3 说不</h2>
-    </a>
-    <div class="category-and-date">
+			
+
+			<div class="main-content">
+				<div class="home-content-container">
+    <ul class="home-article-list">
         
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89%20%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9%20Web3%20%E8%AF%B4%E4%B8%8D/">
+                            <img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/8B9m6OF5nfDNIWe.webp" alt="（转载）（译） 捍卫自由的互联网，对 Web3 说不" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89%20%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9%20Web3%20%E8%AF%B4%E4%B8%8D/">
+                            （转载）（译） 捍卫自由的互联网，对 Web3 说不
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            （转载）（译） 捍卫自由的互联网，对 Web3 说不
+本文为转载他人文章，如有侵权，请联系博主删除
+原文标题：[译] 捍卫自由的互联网，对 Web3 说不
+原文链接：https://blog.skk.moe/post/keep-web-free-say-no-to-web3/
+原文作者：Sukka
+
+来自译者的楔子作为一个充满泡沫和噱头的新概念，Web3 和元宇宙在区块链的社区中掀起了一波浪...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Aug 10 2023 21:36:56 GMT+0800">
+                
+                    2023-08-10
+                
             </span>
-            2023/8/10
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="（转载）（译）-捍卫自由的互联网，对-Web3-说不"><a href="#（转载）（译）-捍卫自由的互联网，对-Web3-说不" class="headerlink" title="（转载）（译） 捍卫自由的互联网，对 Web3 说不"></a>（转载）（译） 捍卫自由的互联网，对 Web3 说不</h1><blockquote>
-<p>本文为转载他人文章，如有侵权，请联系博主删除</p>
-<p>原文标题：[译] 捍卫自由的互联网，对 Web3 说不</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.skk.moe/post/keep-web-free-say-no-to-web3/">https://blog.skk.moe/post/keep-web-free-say-no-to-web3/</a></p>
-<p>原文作者：<a target="_blank" rel="noopener" href="https://skk.moe/">Sukka</a></p>
-</blockquote>
-<h2 id="来自译者的楔子"><a href="#来自译者的楔子" class="headerlink" title="来自译者的楔子"></a>来自译者的楔子</h2><p>作为一个充满泡沫和噱头的新概念，Web3 和元宇宙在区块链的社区中掀起了一波浪潮。鼓吹者坚信 Web3 就是互联网的未来、不惜砸下大把的金钱和精力、希望能在未来中捞一杯羹；而大部分人保持观望的态度。是时候来一点 Web3 的反对意见了。</p>
-<p>这篇译文将会作为我驳斥 Web3 的引子。在新的一年里，我会继续撰写评论文章、翻译来自区块链社区的观点，揭露 Web3 的谎言、戳破元宇宙的泡沫。</p>
-<blockquote>
-<p>原文标题：Keep the web free, say no to Web3</p>
-<p>原文链接：<a target="_blank" rel="noopener" href="https://yesterweb.org/no-to-web3/index.html">https://yesterweb.org/no-to-web3/index.html</a></p>
-<p>原文作者：<a target="_blank" rel="noopener" href="https://yesterweb.org/no-to-web3/index.html">Yesterday Web</a></p>
-<p>译者：<a target="_blank" rel="noopener" href="https://skk.moe/">Sukka</a></p>
-</blockquote>
-<p>Web3 被支持者称为一个想法、一个运动、新一代的互联网。</p>
-<p>Web3 被视为互联网的「未来」。这个概念由<a target="_blank" rel="noopener" href="https://www.sfchronicle.com/tech/article/Crypto-has-a-bro-problem-Women-in-the-field-say-16336453.php">一群加密货币狂热者</a>提出，基于现有的公共区块链。</p>
-<h2 id="Web3-声称其由社区管理"><a href="#Web3-声称其由社区管理" class="headerlink" title="Web3 声称其由社区管理"></a>Web3 声称其由社区管理</h2><blockquote>
-<p>虽然一个穷人为了实现他们的诉求，愿意牺牲自己所有的一切，但是他们很容易就被一个有着相反偏好的富人所推翻。请看，非洲贫困国家缺乏公共交通、缺乏无障碍辅助设备、缺乏药物、缺乏纯净的饮用水和健康的食品供应。当地人并不是不需要这些东西，只是因为在富人们眼中，这些穷人的生活不值得被改善。</p>
-</blockquote>
-<p>许多 Web3 社区和加密货币有关社区都使用「<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Quadratic_voting">平方投票法</a>」，即允许参与者表达他们对一个观点的偏好程度、而不是简单的「赞成」与「反对」。但是不幸的是，「你喜欢这个吗？」已经变成了「用你的钱告诉我，你有多喜欢这个」。换句话说，在决定 Web3 走向的道路中，参与者可以通过撒币来表达他们的诉求。</p>
-<p>InvisibleUp 的文章「<a target="_blank" rel="noopener" href="https://invisibleup.com/articles/38/">不，Web3 不是去中心化</a>」详细而有力地阐述了这个观点。</p>
-<h2 id="Web3-声称其是去中心化的"><a href="#Web3-声称其是去中心化的" class="headerlink" title="Web3 声称其是去中心化的"></a>Web3 声称其是去中心化的</h2><p>去中心化肯定是好事，但是加密货币和区块链绝对不是去中心化的唯一实现。请见 Soatok 发表在 Dhole Moments 上的文章「<a target="_blank" rel="noopener" href="https://soatok.blog/2021/10/19/against-web3-and-faux-decentralization/">Against Web3 and Faux-Decentralization</a>」。</p>
-<p>非常凑巧的是，Web3 的许多关键的「去中心化」基础设施都运行在由互联网巨头亚马逊提供的 中心化云计算服务 AWS 上（参见来自英国伍尔弗汉普顿大学的经济学家、数字货币投资者 Shaurya Malwa 发表的文章 「<a target="_blank" rel="noopener" href="https://decrypt.co/44321/70-of-ethereum-nodes-are-hosted-on-centralized-services">70% of Ethereum Nodes Are Hosted on Centralized Services</a>」），并且由「内幕人士」而非广大社区负责运营（参见区块链研究者、数字货币投资者 David Canellis 于 2019 年就以太坊硬分叉发表的评论文章「<a target="_blank" rel="noopener" href="https://thenextweb.com/news/ethereum-insiders-fire-back-nodes">Ethereum insiders deny there’s only one computer keeping a copy of its blockchain</a>」）。</p>
-<h2 id="Web3-声称要消除互联网的「中间人」"><a href="#Web3-声称要消除互联网的「中间人」" class="headerlink" title="Web3 声称要消除互联网的「中间人」"></a>Web3 声称要消除互联网的「中间人」</h2><blockquote>
-<p>想象一下，在 Web3 的倡议和提案中，用户将会真正拥有他们的数据。哇！那为什么像 Twitter 和 Facebook 的互联网巨头会允许有人破局呢？他们正在嫌赚的钱不够多呢！</p>
-<p>—— Auzzie Jay。</p>
-</blockquote>
-<p>Web3 的支持者缄口不谈他们将会如何消除被称为「中间人，Man in the Middle」的互联网巨头。不过，你如果想一下的话，他们刚刚好铲除了一个互联网巨头——Facebook，毕竟他们已经改名「元（Meta）」了，嗯。</p>
-<h2 id="Web3-声称要彻底杜绝数据泄露"><a href="#Web3-声称要彻底杜绝数据泄露" class="headerlink" title="Web3 声称要彻底杜绝数据泄露"></a>Web3 声称要彻底杜绝数据泄露</h2><p>不知道命运是否充满了讽刺，以太坊自己就因为数据泄露而损失了 5500 万美元（参见美国彭博社记者 Matthew Leising 出版的书籍「Out of the Ether: The Amazing Story of Ethereum and the $55 Million Heist That Almost Destroyed It All」、<a target="_blank" rel="noopener" href="https://www.coindesk.com/tech/2020/09/17/the-55m-hack-that-almost-brought-ethereum-down/">详细介绍了以太坊的历史、以及以太坊损失 5500 万美元的前后故事</a>）。</p>
-<p>Insider Inc. 签约作者 Carla Mozée 在四个月前（译者注：即 2021 年 8 月 31 日）发表了一篇文章「<a target="_blank" rel="noopener" href="https://markets.businessinsider.com/news/currencies/cryptocurrency-hacks-fraud-cases-record-bitcoin-ethereum-wallets-breaches-defi-2021-8">Cryptocurrency hacks and fraud are on track for a record number of incidents in 2021, data shows</a>」，详细介绍了过去八个月里发生的有关加密货币的非法集资、诈骗、黑客攻击事件、以及造成的损失。</p>
-<h2 id="Web3-声称要解决「双重开支」问题"><a href="#Web3-声称要解决「双重开支」问题" class="headerlink" title="Web3 声称要解决「双重开支」问题"></a>Web3 声称要解决「双重开支」问题</h2><blockquote>
-<p>译者注：你可以把「双重开支」想象为开出的支票被复制，导致同一笔消费让你的账户被反复扣款。加密货币的 51% 攻击就是一个典型的「双重开支」问题。</p>
-</blockquote>
-<p>加密货币并不能阻止「双重开支」问题，以至于社区为此发明了一个名词「51% 攻击」。当一个实体获得了整个区块链网络中超过 51% 的控制权，就能通过「最长链原则」控制这个区块链网络的走向、从而伪造交易。这种攻击是如此的普遍，以至于每年至少要发生一次，如<a target="_blank" rel="noopener" href="https://news.bitcoin.com/privacy-coin-verge-third-51-attack-200-days-xvg-transactions-erased/">2018 年 Verge 遭遇三次 51% 攻击</a>、<a target="_blank" rel="noopener" href="https://thehackernews.com/2019/01/ethereum-double-spend-attack.html">2019 年以太坊经典遭遇双重开支攻击，损失达 110 万美元</a>和 2020 年<a target="_blank" rel="noopener" href="https://cointelegraph.com/news/bitcoin-gold-blockchain-hit-by-51-attack-leading-to-70k-double-spend">比特黄金遭遇 51% 攻击，导致了 7 万美元的双重开支</a>。</p>
-<p>所有区块链应用（不仅仅是加密货币）在设计时，都需要预防一个实体、或多个实体的组合控制超过一半的网络，但是 Web3 显然没有考虑到这一点。</p>
-<h2 id="Web3-从人为制造的稀缺性中获利"><a href="#Web3-从人为制造的稀缺性中获利" class="headerlink" title="Web3 从人为制造的稀缺性中获利"></a>Web3 从人为制造的稀缺性中获利</h2><blockquote>
-<p>为了获得最大的利润，生产者会限制生产、而不是确保对资源的最大化利用。</p>
-</blockquote>
-<p>由于 Web3 和数字货币密切相关，因此不可避免地继承了数字货币「通过人为制造的稀缺性中获利」的本质。尽管「通过技术、生产或分享，理论上可以创造出无限丰富的数字化实体」，但是它们依然是稀缺的、控制在少数人手中。</p>
-<p>「人为制造的稀缺」是一个经典的经济学概念，你可以在 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Artificial_scarcity">Wikipedia 上读到浅显易懂的介绍</a>。</p>
-<h2 id="Web3-满足的是大鳄和投机者，而非整个互联网"><a href="#Web3-满足的是大鳄和投机者，而非整个互联网" class="headerlink" title="Web3 满足的是大鳄和投机者，而非整个互联网"></a>Web3 满足的是大鳄和投机者，而非整个互联网</h2><p>React Native 应用开发者、Serverless 和 JAMstack 领域的专家、前 AWS 技术带头人 Nader Dabit 曾经在他的文章<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/news/what-is-web3/">What is Web3? The Decentralized Internet of the Future Explained</a>中介绍了「与 Facebook 等互联网巨头不同」的公司会如何构建 Web3：</p>
-<ul>
-<li><p>宣发一个新的、令人激动的项目</p>
-</li>
-<li><p>任何人都可以从第一天开始参与建设，或天使投资</p>
-</li>
-<li><p>公司发布一些代币、10% 用于奖励早期建设者、10% 卖给天使投资人，剩下的留作未来开支的预算</p>
-</li>
-<li><p>投资者和建设者 <strong>需要用代币来为项目的未来投票</strong></p>
-</li>
-<li><p><strong>谁拥有的代币越多，谁就有话语权</strong></p>
-</li>
-</ul>
-<p>记住，任何推动 Web3 或是加密货币的人都是那些能从中获得真实利润的人，他们对互联网的未来毫不关心：</p>
-<p><a target="_blank" rel="noopener" href="https://www.coindesk.com/tech/2021/08/26/microsoft-is-awarded-us-patent-for-crypto-token-creation-service/">微软成功获得加密代币创建服务（Crypto Token Creation as a Service）的专利</a></p>
-<p><a target="_blank" rel="noopener" href="https://thenextweb.com/news/nike-blockchain-sneakers-cryptokick-patent">耐克现在拥有将区块链用于运动鞋的专利：CryptoKicks</a></p>
-<p><a target="_blank" rel="noopener" href="https://adage.com/article/marketing-news-strategy/mcdonalds-gets-inito-nft-game-mcrib/2376996">麦当劳发行 MCNFT 纪念 Mcrib 的回归</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.scmp.com/lifestyle/k-pop/article/3155551/nfts-and-cryptocurrency-draw-k-pop-labels-behind-bts-blackpink">BTS、Blackpink、Twice 和其他团体背后的 K-Pop 寻求用 NFT 和加密货币来说服粉丝消费</a></p>
-<p><a target="_blank" rel="noopener" href="https://cointelegraph.com/news/reddit-to-reportedly-tokenize-karma-points-and-onboard-500m-new-users">Reddit 将其 5 亿用户的 Karma 转换为 ERC-20 代币</a></p>
-<p>Web3 只会进一步加剧贫富差距、加剧社会分层、加剧阶级隔阂。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/" style="color: #ff7d73">小作文</a>
-        </span>
-        
-    </div>
-    <a href="/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89%20%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9%20Web3%20%E8%AF%B4%E4%B8%8D/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/08/08/Hexo%E3%81%AE%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/">
-        <h2 class="post-title">Hexoの千层套路</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/">小作文</a>&nbsp;
+                        </li>
+                    
+                </ul>
             </span>
-            2023/8/8
-        </span>
-        
         
     </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="Hexoの千层套路"><a href="#Hexoの千层套路" class="headerlink" title="Hexoの千层套路"></a>Hexoの千层套路</h1><p>最开始，我想用jekyll搭建博客，然而由于看不懂Github上的英文文档，“轻松”放弃；之后，我听说hugo的速度很快，但是不知道怎么回事，主题一直配置不好，最后决定再也不搞博客了（嘿嘿）。发现hexo不错是在搜索Spotify电脑破解版时，发现了一个非常优质的博客“Ednovas的小站”。这个站就是借助hexo生成的，我的兴趣马上就来了。</p>
-<p>不过事情并非那么简单，当我开始用hexo时，发现这个东西也没比hugo简单多少……</p>
-<h2 id="下载与配置"><a href="#下载与配置" class="headerlink" title="下载与配置"></a>下载与配置</h2><p>首先安装<a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js</a>和<a target="_blank" rel="noopener" href="https://git-scm.com/download/win">Git</a></p>
-<p>在Git Bash中配置自己的用户名和邮箱：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的GitHub用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的GitHub注册邮箱&quot;</span><br></pre></td></tr></table></figure>
 
-<p>并生成SSH Key：<br><code>ssh-keygen -t rsa -C &quot;你的GitHub注册邮箱&quot;</code></p>
-<p>找到生成的.ssh的文件夹中的id_rsa.pub密钥，将内容全部复制</p>
-<p>然后使用winget安装hexo：<code>$ npm install -g hexo-cli</code></p>
-<p>在自己想存放博客文件夹的位置，输入<code>hexo init 博客名称</code></p>
-<h2 id="网站配置"><a href="#网站配置" class="headerlink" title="网站配置"></a>网站配置</h2><p>这里我直接使用了Github Pages的网站托管。先在Github新建一个仓库，注意名字必须是“你的Github用户名.github.io”。</p>
-<p>打开Github设置中的“SSH and GPG keys”页面，新建一个SSH Key并把id_rsa.pub密钥内容粘贴上去：<img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/b9dDaT1h8juqB3R.png" alt="SSH"></p>
-<p>在你的博客文件夹内，找到根目录下的_config.yml文件，修改deploy中的内容：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: 这里填入你之前在GitHub上创建仓库的完整路径，记得加上 .git</span><br><span class="line">branch: main</span><br></pre></td></tr></table></figure>
-
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>这里我使用的是<a target="_blank" rel="noopener" href="https://butterfly.js.org/">Butterfly</a>主题。</p>
-<p>在博客主题（theme）目录里，输入以下代码并删去.git文件即可：<br><code>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly</code></p>
-<p>接下来，把根目录下的_config.yml文件中的theme改为butterfly即可：</p>
-<p><code>theme: butterfly</code></p>
-<h2 id="开始写作吧！"><a href="#开始写作吧！" class="headerlink" title="开始写作吧！"></a>开始写作吧！</h2><p>之后的配置因人而异，一般可以根据官方文档修改博客根目录下的_config.yml和theme目录下的_config.yml以自定义你的博客。</p>
-<p>下面列出hexo的常用命令：</p>
-<p>新建文章：<code>hexo new &quot;（文章标题）&quot;</code></p>
-<p>清除public文件夹中的内容：<code>hexo clean</code></p>
-<p>生成public文件夹的内容：<code>hexo generate</code></p>
-<p>部署到仓库：<code>hexo deploy</code></p>
-<p>在本地预览博客：<code>hexo server</code></p>
-<h3 id="P-S-为博客添加RSS订阅链接"><a href="#P-S-为博客添加RSS订阅链接" class="headerlink" title="P.S.为博客添加RSS订阅链接"></a>P.S.为博客添加RSS订阅链接</h3><p>在博客根目录下，输入<code>$ npm install hexo-generator-feed --save</code></p>
-<p>修改博客根目录下的_config.yml下feed中的内容，详情见官方<a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo-generator-feed#options">README</a>文件。</p>
-<p>在主题_config.yml添加以下代码：<code>rss: /atom.xml</code></p>
-<p>参考资料：</p>
-<p>1.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">https://zhuanlan.zhihu.com/p/26625249</a><br>2.<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn/</a><br>3.<a target="_blank" rel="noopener" href="https://butterfly.js.org/">https://butterfly.js.org/</a></p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%95%99%E7%A8%8B/" style="color: #ff7d73">教程</a>
-        </span>
-        
-    </div>
-    <a href="/2023/08/08/Hexo%E3%81%AE%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/" class="go-post">阅读全文</a>
+    <a href="/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89%20%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9%20Web3%20%E8%AF%B4%E4%B8%8D/">阅读全文<span class="seo-reader-text">（转载）（译） 捍卫自由的互联网，对 Web3 说不</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
-<div class="post">
-    <a href="/2022/12/28/%E7%96%AB%E6%83%85%E8%BF%99%E4%B8%89%E5%B9%B4/">
-        <h2 class="post-title">疫情这三年</h2>
-    </a>
-    <div class="category-and-date">
+                </div>
+            </li>
         
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2023/08/08/Hexo%E3%81%AE%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/">
+                            <img src="https://s2.loli.net/2023/08/10/4tcwbi51qC7nRFT.png" alt="Hexoの千层套路" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2023/08/08/Hexo%E3%81%AE%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/">
+                            Hexoの千层套路
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            Hexoの千层套路最开始，我想用jekyll搭建博客，然而由于看不懂Github上的英文文档，“轻松”放弃；之后，我听说hugo的速度很快，但是不知道怎么回事，主题一直配置不好，最后决定再也不搞博客了（嘿嘿）。发现hexo不错是在搜索Spotify电脑破解版时，发现了一个非常优质的博客“Ednovas的小站”。这个站就是借助hexo生成的，我的兴趣马上就来了。
+不过事情并非那么简单，当我开始...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Tue Aug 08 2023 21:35:30 GMT+0800">
+                
+                    2023-08-08
+                
             </span>
-            2022/12/28
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="疫情这三年"><a href="#疫情这三年" class="headerlink" title="疫情这三年"></a>疫情这三年</h1><p>都说乱世才能出英雄，在疫情这三年，也是我成长最大的三年。这三年，用学生的方式来说，是七下、八上、八下、九上、九下、高一上那么六个学期。它不只是初中，还有高中的一小部分。可以说，每一年我对于上一年都是颠覆性的改变，而这在我平淡的2020年之前的生活是远远不敢想的。</p>
-<p>我想把这三年归结为我的三次居家隔离。隔离的时候，万籁俱寂，无人打扰，往往是思想最为活跃易于改变的阶段。第一次的隔离是20年初，上着网课，我对自己的学习进行了深思熟虑，这种刚刚经历过巨大挫折后的深思熟虑往往是最为清晰的。当然，这种思考带给我了一整套完整的、成熟的学习方法，我相信我会受益终生。</p>
-<p>第二次的巨大醒悟大概是在八九年级过渡的时候，我又经历了一次成长。不仅仅是偶然吧，但是我“突然”开始“科学上网”，对世界、对个人的认识，通过网上的每个人的看法，以及我当时看的两本对我影响很大的书—————《乔布斯传》和《明朝那些事儿》，我的思想过渡到了一种理性、简约的风格，对政治、经济开始感兴趣并逐渐形成一种指属于自己的看法。说实话，学会“科学上网”对我的影响是巨大的，一个已经成熟的世界观人生观突然破灭，又被我亲手缔造，有着一大堆的外界事物在等着我探索，这种刺激条件下，思想很容易会改变。当然，这与我的第二次隔离有着极其密切的联系。当时我居住的小区被划为防范区，这种想回去读书的情绪与许多东西缠绕着我。我开始注重所谓的“艺术”，听听流行歌、看看电影，想想其实那时候确实思想蛮开放自由的。</p>
-<p>第三次的改变在我的总体的想法，基本稳定了我的观点、对于各种事情的看法。这个改变与第三次隔离有关。我看了新海诚的大部分电影，是他的电影改变了我。我终于过渡到一种平稳、积极的情绪当中去。我认为，我对美、对生活换了一种思考方式。很高兴，我认为这是一种成熟的、正确的方式。相信这是疫情的最后一次居家、最后一次网课了，我终于稳定地形成了正确的价值观。</p>
-<p>我想了很久，一定要把我的这种经历记录下来，于是写下了这短短的几行字。一个人的人生判断也许就在这一点点潜移默化的潜意识当中，逐渐形成的吧。</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E6%84%9F%E6%83%B3/" style="color: #ffa2c4">感想</a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/28/%E7%96%AB%E6%83%85%E8%BF%99%E4%B8%89%E5%B9%B4/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2022/12/24/%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">
-        <h2 class="post-title">一些想法</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>&nbsp;
+                        </li>
+                    
+                </ul>
             </span>
-            2022/12/24
-        </span>
-        
         
     </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="一些想法"><a href="#一些想法" class="headerlink" title="一些想法"></a>一些想法</h1><p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/3fTR6rUGSz8eYnm.jpg" alt="alt 三叶"></p>
-<hr>
-<p>忘记是哪一年，《君の名は。》的海报突然出现在电视、网站上。我并不知道这是什么电影，也就没有注意。</p>
-<p>也是机缘巧合吧，我的“一生之敌”21世纪英语报竟然几乎用一整版报道了《すずめの戸締まり》的上映。之后在小组的presentation上，好巧不巧选了一个新海诚电影的混剪视频，于是我决定周末一定要去看看他的几部电影（然后就不能自拔了）。</p>
-<p>愚以为，这些电影不过也就是普通的日漫罢了，大概率逃不了萌腐宅的特点。看之前我看了看评分，《君の名は。》好像是最火的（虽然我觉得《天気の子》好像更好看一点，但是一堆人觉得不好看？不能理解），于是开刷。</p>
-<p>第一感觉就是：确实每一帧都是壁纸。虽然这种画面理论上画手都能画出来，但是只有新海诚不顾大量时间和精力坚持用了，于是观感完胜。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/v2-1a1833237cb17ae856a193ddb43fc11f_1440w.webp" alt="alt 画面"></p>
-<p>接着就是过于真实的情节了。生于乡村的，总想看看大城市的霓彩。而两人互换身体，虽然不是新的创意，但是用于这种灾难-爱情-日漫的电影，竟有种出奇的合适感。三叶是一个极平凡的形象，长的好看但不像一些动漫里那样“妖艳”，父亲是县长（村长？），中产阶级，三叶会缝缝补补（好像日本人很看重这个），一些些的传统元素交织其中。</p>
-<p>交叉的时间线，虽然对于像我这种看电影不加思考的人来说有些迷糊，但是确实让两人的距离拉近了许多。紧张的、感动的情节竟然能把我这种“直男”（至少我觉得自己是）打动，看来要不是我开始多愁善感了，或是确实有那么动人。（话说在看《君の名は。》和《天気の子》时我竟然哭了，让我自己都大吃一惊）</p>
-<p>日本注重“約束”（羁绊？？？），三叶的线颇有意蕴。夕阳下的两人相逢，我已经没法表达感情了，只是觉得太美了、太真实简单了，想永远停留在这一刻（虽然后来发现，新海诚早期的作品都是男女主相逢一次，后来就不再相逢的）。泷写的“喜欢你”更是出乎意料，让我的心如同融入了电影一般。</p>
-<p>作品的结尾也很有意思。如果是年轻几岁的新海诚，应该会以时间线的三年错开，营造一个两人不能相遇的伤感结局（这个大概也是一堆人说这部电影最“不新海诚”的原因吧），但是这里两人遇见了。我个人比较喜欢两人遇见的结局（可以说长吁了一口气），毕竟无法相遇，对于泷和三叶都是苦痛的吧。（下图为原海报和现海报的对比，可见原来的构想可能是悲剧的吧）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/ZKfdsyvVPtweDBn.jpg" alt="alt 原海报"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/XJBR2SCtqQMmeWw.jpg" alt="alt 现海报"></p>
-<p>新海诚相信爱情了。我看完电影后，从对西方文化（现代简约风？）更感兴趣变成了对东方的文化产生了共鸣（所以审美的改变就在一瞬间），虽然从之前某一期《读者》上看到了某位摄影师拍摄东方浮世绘风格的照片时就开始有些感触，但是这时我懂得了这种东方的美感真正的“美”。也许我之后会去日本，看看几个电影中的真实场景吧。</p>
-<hr>
-<p>对于《天気の子》，我感触最深的则是音乐。我不常听日本的音乐，但是天气放晴时的配乐，和俯瞰东京时的音乐实在扣人心弦，主题曲也超好听！（现在我一边写一边就在听这首《愛にできることはまだあるかい》）谢谢RADWIMPS，确实有才啊。</p>
-<p>《天気の子》涉及到的社会性问题更多了。网上热传的“有许多阳菜为谋生不得不进入风俗店，但是又有几个帆高会去救”点明了这个社会的残忍（或许是不公吧），帆高为救阳菜宁愿东京被水淹没也引发热议（要是我选，我也宁愿东京被淹）。包括恶警不管风俗店但是管未成年人的一些事件（虽然那边好像这种店是合法的）。但是除去这些“哲理”问题，我个人认为《天気の子》的情感过渡更加自然了，依然是两个社会底层的、辍学的小孩子的“羁绊”（我好像很喜欢这种剧情？？？），由于我语文太差，我只能说：太动人了。</p>
-<p>作品的结尾真的戳泪点。首先是新海诚又一次相信了爱情。而帆高和阳菜在田端站南出口的走道相遇的那一刻，《大丈夫》响起，之后直接白屏，出现“天気の子”四个大字，说实话我真的震惊了，原来相遇的情节还可以这么拍，还可以这么感动。（下图为两人相遇的地方）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/GCYZWTPvyRDgBmw.jpg" alt="天気の子_田端駅南口.jpg"></p>
-<hr>
-<p>看完这两部电影，我不知道怎么回事，总感觉有许多东西想要抒发想要表达。也许是对人生中的一些事情有了新的理解，对爱、对世界慢慢形成了自己的看法吧。</p>
-<hr>
-<h2 id="小彩蛋"><a href="#小彩蛋" class="headerlink" title="小彩蛋"></a>小彩蛋</h2><p>我觉得，其实新海诚的这几部电影很好地反应了时代吧。《秒速5センチメートル》这个时代的新海诚是不相信爱的，同时人物的画风属于00年的那种（说实话明里不是很好看）；《言の葉の庭》时代的新海诚很隐晦，出现了10年那种（透明？&#x2F;3D？）质感的画风（雪野百香好看！）；《君の名は。》和《天気の子》则是标准的15后日漫风，但是新海诚以这种小清新的方式呈现，确实去除了大量的萌腐宅成分（所以三叶和阳菜就是我觉得最好看的阶段了）；现在到了2022，出现了20年画风，《すずめの戸締まり》里的一些神秘的色彩（铃芽说实话不太好看，只能说正常吧，而且身高太高————也许是当今人们的审美风格吧；男主也是妥妥的“帅哥”风格，但我觉得不像前两部作品那样“正常”），或许就是时代的变迁改变了他们吧。所以电影总是带着时代的印记吧。</p>
 
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
-        </span>
-        
-        
-        
-        <span class="tag">
-            
-            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/" style="color: #ffa2c4">小作文</a>
-        </span>
-        
-    </div>
-    <a href="/2022/12/24/%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/" class="go-post">阅读全文</a>
+    <a href="/2023/08/08/Hexo%E3%81%AE%E5%8D%83%E5%B1%82%E5%A5%97%E8%B7%AF/">阅读全文<span class="seo-reader-text">Hexoの千层套路</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
-<div class="post">
-    <a href="/2022/10/05/%E6%88%91%E7%9A%84%E5%B0%8F%E5%AD%A6/">
-        <h2 class="post-title">我的小学</h2>
-    </a>
-    <div class="category-and-date">
+                </div>
+            </li>
         
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2022/12/28/%E7%96%AB%E6%83%85%E8%BF%99%E4%B8%89%E5%B9%B4/">
+                            <img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/Gyl4cqzrnjb2ME8.jpg" alt="疫情这三年" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2022/12/28/%E7%96%AB%E6%83%85%E8%BF%99%E4%B8%89%E5%B9%B4/">
+                            疫情这三年
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            疫情这三年都说乱世才能出英雄，在疫情这三年，也是我成长最大的三年。这三年，用学生的方式来说，是七下、八上、八下、九上、九下、高一上那么六个学期。它不只是初中，还有高中的一小部分。可以说，每一年我对于上一年都是颠覆性的改变，而这在我平淡的2020年之前的生活是远远不敢想的。
+我想把这三年归结为我的三次居家隔离。隔离的时候，万籁俱寂，无人打扰，往往是思想最为活跃易于改变的阶段。第一次的隔离是20...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Dec 28 2022 14:35:47 GMT+0800">
+                
+                    2022-12-28
+                
             </span>
-            2022/10/5
         </span>
         
         
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h1 id="我的小学"><a href="#我的小学" class="headerlink" title="我的小学"></a>我的小学</h1><p>我一直想写一篇关于我小学时光的小文章，可惜一直没有时间。今天想了想，其实我这六年的小学时光给我了一个快乐的平台吧。</p>
-<p>刚进小学的时候没什么感觉，入学前参加了所谓的“游园”，夹弹珠和看图说话是我印象很深刻的（一般人都把自己的弱点记的特别深刻）。开学的时候，比我们高一个年级的同学拉着我的手进了校门，其实我们那个时候一共也只有2个年级，所以也只能派他们（^_^）。一年级第一次考试是语文，清晰地记得我考了82分，一个中庸的成绩。那个时候班主任宣传的一个很好的同学后来却一蹶不振，后来我的初中的班主任说过一句话：“没有屹立不倒的强者，只有突然出现的黑马。”我想，这句话确实是对的。</p>
-<p>上课时，班主任反映我眼睛向窗外看，实际上好像是遗传的，其实我是认真听课的。一年级没有期末考试，而是所谓的“游园活动”。学校里搞了一个“护蛋行动”，导致我里三层外三层地把一个鸡蛋包了个遍，现在想想还是蛮好玩的。二三年级的时候记得我考了个“极低分”75（然而一堆100），彻底说明了我没有空间想象能力。三年级下期末考唯一一次“痛失”第一，有点难受，但是因为那个时候比较小，自尊心没那么强。从3年级开始我被学校里数学的“聪明卷”折磨得死去活来，课外参加学而思，被杯赛折磨得死去活来（好像最好成绩是中环杯入围奖），还参加了个数学社团。这些经历给我的最大感想就是人的智商确实是分三六九等的，有些东西试试就好，不必太过认真。当然，我的小学数学老师陈老师是我特别喜欢和敬佩的老师，她甚至还邀请我们去她家吃饭（真的吃了）。</p>
-<p>四年级好像是有很大变化的一年，我的数学老师去生孩子了，后来到了濮家校区，变成了我的一个初中同学的数学老师。我们数学老师就换了好几个。然后就是我个人认为四年级各门课都开始难起来了，但是当时也没有太大的感觉，整个小学阶段我的改变都是比较小的吧。当然，有一个“创举”就是这个时候的我开始看初中的数学课本（虽然是人教不是浙教），当时觉得哇这个几何是人类能够做出来的吗，结果发现到高中也不学平几，初中的平几确实是“高难度”的了。四年级的时候还搞了个运动会，集团所有的运动员都来了，观赏性蛮强的，当然，由于我们校长是“雨神”，运动会的时候也不例外下雨了。</p>
-<p>五年级，我们的教师团队又开始稳定下来了，班主任是个（内向？）的英语老师。我开始改报科学车模社团，科学沈老师真的帮助了我很多，我很感谢她。我们还去洞桥营地“军训”了一下。私以为，小学这个才是真正的军训，既有“敢死队”式的高强度训练，也有一般般的站军姿这种，还有射击、“跳楼”、射箭、文艺晚会这些娱乐项目。初高中的军训我总感觉少了些什么。</p>
-<p>六年级所做的和初三差不多，就是最后的冲刺。说实话，那个时候是我最卷的时候，不管是初中还是高中我都没有那么全身心地投入到学习当中去。这种卷也有些成果，六上我（好像？）考了集团第三（不一定是，年代过于久远，我可能记错了），但是我应该是我们校区唯一的校长“半打包票”能进采实的，这次考试有很大的功劳，我应该谢谢曾经那个内卷的我，和我的父母老师，让我进了一个我感谢一生的初中。（话说我语文书上没画小人，而是在侧面写了大大的“我要进采实”，或许这也是缘分吧）</p>
-<p>六年级我参加了足球的课程，还蛮好玩的，给我的忙碌生活中留下的“青春”的回忆吧。我还不知道为什么被评为大队长，想当年我三年级时费尽全力竞选大队委都没进。（虽然我比较摆烂很少开会）同时，每天早上升国旗的也是我，还是蛮光荣的。六下除了学习，我们还拍了毕业照，快毕业那一段时间，我记得一个下午我们拍了毕业照。（没错，我不管回忆小学还是初中都是黄昏，将来回忆高中或许也是黄昏）在三楼的巨大的开口凭栏俯视，看着自己度过了六年的小学，突然发现这个生活也就这样快要结束了，操场上自然的人工草坪摇曳着，夕阳投影在小学黄色的墙上，留下一些些斑驳的印记。这个画面成了我六年小学生活的写照。</p>
-<p>我们小学的毕业典礼还是很隆重的，六下我们一直在排练。在濮家校区搭建了一个巨大的舞台，结合了“高级”的灯效，每个节目的观赏性都极佳。那个夜晚，聚光灯的余光打在身上，我的班主任拍下的一张我端着蛋糕的照片可能是我“最帅”（我自我感觉良好）的照片了。那天晚上我们在濮家校区的体育馆搭起帐篷“睡觉”，我和两个好基友打王者打到凌晨2点，连我的班主任都开始“感叹”。</p>
-<p>后来好像还去上了几天学，最后一天与上学的任何一天并没有两样，最后出校门时说的也一样：“老师再见，同学再见，保安叔叔再见。”可惜后来竟永远没有机会说这些话了。</p>
-<p>小学的校歌是我最会唱的，因为每当放学的时候，“红橙黄绿青蓝紫”就会在耳边奏响。小学的时光好像很慢，在我的眼中小学是我无拘无束、“不羁放纵”之年，在我写这篇文章时，一幕幕画面好像电影一样在我眼前浮现，真的好怀念那段时光。</p>
-<p>2022年10月5日</p>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%84%9F%E6%83%B3/">感想</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
         
-        <span class="icon">
-            <i class="fa-solid fa-tags fa-fw"></i>
+    </div>
+
+    <a href="/2022/12/28/%E7%96%AB%E6%83%85%E8%BF%99%E4%B8%89%E5%B9%B4/">阅读全文<span class="seo-reader-text">疫情这三年</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2022/12/24/%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">
+                            <img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/3fTR6rUGSz8eYnm.jpg" alt="一些想法" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2022/12/24/%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">
+                            一些想法
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            一些想法
+
+忘记是哪一年，《君の名は。》的海报突然出现在电视、网站上。我并不知道这是什么电影，也就没有注意。
+也是机缘巧合吧，我的“一生之敌”21世纪英语报竟然几乎用一整版报道了《すずめの戸締まり》的上映。之后在小组的presentation上，好巧不巧选了一个新海诚电影的混剪视频，于是我决定周末一定要去看看他的几部电影（然后就不能自拔了）。
+愚以为，这些电影不过也就是普通的日漫罢了，大概率...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Sat Dec 24 2022 14:35:32 GMT+0800">
+                
+                    2022-12-24
+                
+            </span>
         </span>
         
         
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/">小作文</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
         
-        <span class="tag">
-            
-            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/" style="color: #00bcd4">小作文</a>
+    </div>
+
+    <a href="/2022/12/24/%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/">阅读全文<span class="seo-reader-text">一些想法</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+                    
+                
+
+                
+                    <div id="home-article-thumbnail" class="home-article-thumbnail relative h-[150px] overflow-hidden rounded-t-large">
+                        <a href="/2022/10/05/%E6%88%91%E7%9A%84%E5%B0%8F%E5%AD%A6/">
+                            <img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/BAl2XUz64kHPQLn.jpg" alt="我的小学" class="w-full h-full object-cover dark:brightness-75 transition-all" />
+                        </a>
+                    </div>
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-5">
+                    <h3 class="home-article-title">
+                        <a href="/2022/10/05/%E6%88%91%E7%9A%84%E5%B0%8F%E5%AD%A6/">
+                            我的小学
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            我的小学我一直想写一篇关于我小学时光的小文章，可惜一直没有时间。今天想了想，其实我这六年的小学时光给我了一个快乐的平台吧。
+刚进小学的时候没什么感觉，入学前参加了所谓的“游园”，夹弹珠和看图说话是我印象很深刻的（一般人都把自己的弱点记的特别深刻）。开学的时候，比我们高一个年级的同学拉着我的手进了校门，其实我们那个时候一共也只有2个年级，所以也只能派他们（^_^）。一年级第一次考试是语文，清晰...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Oct 05 2022 14:35:18 GMT+0800">
+                
+                    2022-10-05
+                
+            </span>
         </span>
         
-    </div>
-    <a href="/2022/10/05/%E6%88%91%E7%9A%84%E5%B0%8F%E5%AD%A6/" class="go-post">阅读全文</a>
-</div>
-
-
-        <div class="page-current">
-    
-    <a class="page-num" href="/page/2/">
-        <i class="fa-solid fa-caret-left fa-fw"></i>
-    </a>
-    <a class="page-num" href="/">1</a>
-    <span class="page-omit">...</span>
-    
-    <span class="current">3</span>
-    
-    <a class="page-num" href="/page/4">
-        4
-    </a>
-    
-    
-    
-    
-    <a class="page-num" href="/page/4/">
-        <i class="fa-solid fa-caret-right fa-fw"></i>
-    </a>
-    
-</div>
-
-    </div>
-    
-    <div id="home-card">
-        <div id="card-style">
-    <div id="card-div">
-        <div class="avatar">
-            <img src="/images/avatar.png" alt="avatar" />
-        </div>
-        <div class="name">空白棱</div>
-        <div class="description">
-            <p>Description<br>…</p>
-
-        </div>
         
-        
-        <div class="friend-links">
-            
-            <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
-            </div>
-            
-        </div>
+            <span class="home-article-tag">
+                <i class="fa-solid fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/">小作文</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
         
     </div>
+
+    <a href="/2022/10/05/%E6%88%91%E7%9A%84%E5%B0%8F%E5%AD%A6/">阅读全文<span class="seo-reader-text">我的小学</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
+                </div>
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+	<a class="extend prev" rel="prev" href="/page/2/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa-regular fa-angle-right"></i></a>
+</div>
+  
     </div>
-    
 </div>
 
-            <footer id="footer">
-    <div id="footer-wrap">
-        <div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
             &copy;
-            2022 - 2025 空白棱の小站
-            <span id="footer-icon">
-                <i class="fa-solid fa-font-awesome fa-fw"></i>
-            </span>
-            &commat;空白棱
-        </div>
-        <div>
-            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
-            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+            
+              <span>2022</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Redefine Team</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        共撰写了 20 篇文章
+                    </span>
+                    
+                </p>
+            
         </div>
         
-    </div>
-</footer>
-
-        </div>
-        
-        <transition name="fade">
-            <div id="preview" ref="preview" v-show="previewShow">
-                <img id="preview-content" ref="previewContent" />
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">访问人数</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">总访问量</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
             </div>
-        </transition>
         
-    </div>
-    <script src="/js/main.js"></script>
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
+            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
     
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
 </body>
+
 </html>

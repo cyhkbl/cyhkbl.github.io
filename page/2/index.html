@@ -1,212 +1,559 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>空白棱の小站</title><meta name="author" content="Henry Chen"><meta name="copyright" content="Henry Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="空白棱の小站">
-<meta property="og:url" content="http://cyhkbl.github.io/page/2/index.html">
-<meta property="og:site_name" content="空白棱の小站">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg">
-<meta property="article:author" content="Henry Chen">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/Gyl4cqzrnjb2ME8.jpg"><link rel="canonical" href="http://cyhkbl.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Henry Chen","link":"链接: ","source":"来源: 空白棱の小站","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: true,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '空白棱の小站',
-  isPost: false,
-  isHome: true,
-  isHighlightShrink: false,
-  isToc: false,
-  postUpdate: '2025-07-25 21:40:55'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
 
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <title>空白棱の小站</title>
+    <meta name="author" content="空白棱" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.png" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
 
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
 
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
 
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = url
-      if (id) link.id = id
-      link.onerror = reject
-      link.onload = link.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        link.onload = link.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(link)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          const now = new Date()
-          const hour = now.getHours()
-          const isNight = hour <= 6 || hour >= 18
-          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
-          else if (t === 'light') activateLightMode()
-          else activateDarkMode()
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="空白棱の小站" type="application/atom+xml">
+</head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>空白棱の小站</span>
+        </a>
         
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;空白棱の小站</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.png"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>空白棱の小站</h1>
+                <h3></h3>
+                <h5></h5>
+            </div>
+        </span>
+    </div>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2024/04/21/mpv%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">mpv的使用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/4/21
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="mpv的使用"><a href="#mpv的使用" class="headerlink" title="mpv的使用"></a>mpv的使用</h1><p>mpv这个播放器我已经使用好几年了，非常简洁，比较适合我“洁癖”的性格。由于需要借助快捷键和配置使用，这里简单介绍一下mpv的使用。更详细的介绍可以在mpv的<a target="_blank" rel="noopener" href="https://mpv.io/manual/stable/">官方文档</a>或<a target="_blank" rel="noopener" href="https://github.com/mpv-player/mpv/wiki">Wiki</a>上查看。</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>在 mpv.exe 的旁边新建一个 portable_config 的文件夹。该目录具有最高级的优先级，一旦存在此文件夹，其它所有的设置目录都会被忽略。在 &#x2F;portable_config&#x2F; 内新建一个 mpv.conf 的空文本，确保文本编码为 UTF-8。</p>
+<p>在 mpv.conf 中写入以下基本参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> hwdec=auto                              # 优先使用硬解（原生模式）</span><br><span class="line">#log-file=&quot;~~desktop/mpv.log&quot;            # 输出log日志在桌面</span><br><span class="line"> keep-open=yes                           # 播放列表中的最后一个条目播放完毕后暂停</span><br><span class="line"> save-position-on-quit=yes               # 退出时保存当前的播放状态</span><br><span class="line"> watch-later-options=start,vid,aid,sid   # 指定保存播放状态的属性列表（示例表示：播放位置、视频 音频 字幕轨号）</span><br><span class="line"> audio-file-auto=fuzzy                   # 自动加载近似名的外置音轨</span><br><span class="line"> sub-auto=fuzzy                          # 自动加载近似名的外置字幕</span><br><span class="line">#profile=high-quality                    # 使用一个内置的画质方案预设</span><br><span class="line"> screenshot-dir=&quot;~~desktop/&quot;             # 截图的输出路径在桌面</span><br></pre></td></tr></table></figure>
+
+<p>某一行参数中如果有注释符号”#”，意味着该行 # 所在位置以后的内容为无效。</p>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p><code>RIGHT</code>前进5秒</p>
+<p><code>LEFT</code>后退5秒</p>
+<p><code>UP</code>前进60秒</p>
+<p><code>DOWN</code>后退60秒</p>
+<p><code>[</code> <code>]</code>倍速播放</p>
+<p><code>&#123;</code>0.5倍速播放</p>
+<p><code>&#125;</code>2.0 倍速播放</p>
+<p><code>Backspace</code>还原到 1.0 倍速</p>
+<p><code>Space</code>播放&#x2F;暂停</p>
+<p><code>.</code>下一帧</p>
+<p><code>,</code>上一帧</p>
+<p><code>1</code> <code>2</code>调整对比度</p>
+<p><code>3</code> <code>4</code>调整亮度</p>
+<p><code>5</code> <code>6</code>调整伽玛</p>
+<p><code>7</code> <code>8</code>调整饱和度</p>
+<p><code>9</code> <code>0</code>调整音量</p>
+<p><code>s</code> 按源分辨率截屏</p>
+<p><code>i</code> 显示有关当前播放文件的统计信息</p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a target="_blank" rel="noopener" href="https://hooke007.github.io/unofficial/mpv_start.html#id1">https://hooke007.github.io/unofficial/mpv_start.html#id1</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%99%E7%A8%8B/" style="color: #00bcd4">教程</a>
+        </span>
+        
+    </div>
+    <a href="/2024/04/21/mpv%E7%9A%84%E4%BD%BF%E7%94%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/04/%E7%BE%8E%E5%8C%96%E5%90%84%E7%A7%8D%E4%B8%9C%E8%A5%BF/">
+        <h2 class="post-title">美化各种东西</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/4
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="美化各种东西"><a href="#美化各种东西" class="headerlink" title="美化各种东西"></a>美化各种东西</h1><h2 id="Windows-Terminal"><a href="#Windows-Terminal" class="headerlink" title="Windows Terminal"></a>Windows Terminal</h2><p>大部分人拿到电脑的第一件事，基本上就是在图形界面上点来点去，我却很留恋DOS机上那种人和冰冷机器通过一条条指令交互的感觉。在Microsoft推出了全新的Windows Terminal后，我再也按捺不住这种冲动，开始“重用”这个小黑框。</p>
+<h3 id="背景美化"><a href="#背景美化" class="headerlink" title="背景美化"></a>背景美化</h3><p>通过设置打开<code>settings.json</code>，找到profiles下的defaults，我们先开启亚克力效果。使用<code>useAcrylic</code>和<code>acrylicOpacity</code>,接着使用<code>backgroundImage</code>和<code>backgroundImageOpacity</code>设置背景图片：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;defaults&quot;</span><span class="punctuation">:</span> </span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;colorScheme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Campbell&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cursorShape&quot;</span><span class="punctuation">:</span> <span class="string">&quot;underscore&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;experimental.retroTerminalEffect&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;font&quot;</span><span class="punctuation">:</span> </span><br><span class="line">            <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;face&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Cascadia Code&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;useAcrylic&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;acrylicOpacity&quot;</span><span class="punctuation">:</span> <span class="number">0.8</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;useAtlasEngine&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;backgroundImage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\Users\\cheny\\Pictures\\new.jpg&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;backgroundImageOpacity&quot;</span><span class="punctuation">:</span> <span class="number">0.4</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>设置完成效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/Snipaste_2023-11-04_15-03-56.png" alt="背景"></p>
+<h3 id="oh-my-posh美化"><a href="#oh-my-posh美化" class="headerlink" title="oh-my-posh美化"></a>oh-my-posh美化</h3><p>首先打开<a target="_blank" rel="noopener" href="https://ohmyposh.dev/">https://ohmyposh.dev/</a>，安装oh-my-posh。我使用的是scoop:</p>
+<p><code>scoop install https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/oh-my-posh.json</code></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%95%99%E7%A8%8B/" style="color: #00a596">教程</a>
+        </span>
+        
+    </div>
+    <a href="/2023/11/04/%E7%BE%8E%E5%8C%96%E5%90%84%E7%A7%8D%E4%B8%9C%E8%A5%BF/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/04/scoop-windows%E7%9A%84%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/">
+        <h2 class="post-title">scoop-windows的应用商店</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/4
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="scoop-windows的应用商店"><a href="#scoop-windows的应用商店" class="headerlink" title="scoop-windows的应用商店"></a>scoop-windows的应用商店</h1><p>虽然Windows最近也推出了自己的软件商店——Microsoft Store，我却本着不把文件放C盘、支持开源等多个理由，在windows上使用最为著名的scoop来对自己的软件进行管理。</p>
+<p>首先，需要设置PowerShell执行策略，通过输入以下命令<code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code>即可。</p>
+<p>为了把scoop安装到D盘，需要添加环境变量的定义，输入下列命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$env:SCOOP=&#x27;D:\software\Scoop&#x27;</span><br><span class="line">[Environment]::SetEnvironmentVariable(&#x27;SCOOP&#x27;, $env:SCOOP, &#x27;User&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>接下来，通过以下命令，可以安装scoop：</p>
+<p><code>Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;)</code></p>
+<p>这样，scoop就安装完成了。</p>
+<h2 id="scoop配置"><a href="#scoop配置" class="headerlink" title="scoop配置"></a>scoop配置</h2><p>有时，我们需要通过代理下载一些软件，输入以下命令改变下载时使用的代理（端口号与自己使用的一致）：</p>
+<p><code>scoop config proxy 127.0.0.1:7890</code></p>
+<p>或找到Scoop配置文件，路径<code>C:\Users\username\.config\scoop\config.json</code>，然后直接修改里面的配置。</p>
+<p>下面的命令可以改变scoop全局安装位置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$env:SCOOP_GLOBAL=&#x27;D:&lt;dirname&gt;&#x27;</span><br><span class="line">[Environment]::SetEnvironmentVariable(&#x27;SCOOP_GLOBAL&#x27;, $env:SCOOP_GLOBAL, &#x27;Machine&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="scoop命令"><a href="#scoop命令" class="headerlink" title="scoop命令"></a>scoop命令</h2><p>Scoop的操作命令基本结构是scoop + 动词 + 对象，比如安装typora，通过输入scoop install typora即可自动完成软件的官网进入+下载+安装等操作。</p>
+<p>以下是一些常用的命令说明：</p>
+<p>cleanup *——删除全部旧版本应用。</p>
+<p>scoop cache rm *——删除全部缓存。</p>
+<p>search——搜索仓库中是否有相应软件。</p>
+<p>install——安装软件。</p>
+<p>uninstall——卸载软件。</p>
+<p>update——更新软件。可通过scoop update *更新所有已安装软件，或通过scoop update更新所有软件仓库资料及Scoop自身而不更新软件。</p>
+<p>hold——锁定软件阻止其更新。</p>
+<p>info——查询软件简要信息。</p>
+<p>home——打开浏览器进入软件官网。</p>
+<p>如果忘记了，可通过输入scoop help来查询语法，以及更多不怎么常用的操作指导。</p>
+<h2 id="推荐软件仓库"><a href="#推荐软件仓库" class="headerlink" title="推荐软件仓库"></a>推荐软件仓库</h2><p>Scoop添加软件仓库的命令是<code>scoop bucket add bucketname</code>(+ url可选)。如添加extras的命令是<code>scoop bucket add extras</code>，执行此命令后会在scoop文件夹中的buckets子文件夹中添加extras文件夹。</p>
+<p>Scoop官方有一些仓库可供使用：</p>
+<p>main - Default bucket for the most common (mostly CLI) apps<br>extras - Apps that don’t fit the main bucket’s criteria<br>games - Open source&#x2F;freeware games and game-related tools<br>nerd-fonts - Nerd Fonts<br>nirsoft - Almost all of the 250+ apps from Nirsoft<br>java - A collection of Java development kits (JDKs), Java runtime engines (JREs), Java’s virtual machine debugging tools and Java based runtime engines.<br>nonportable - Non-portable apps (may require UAC)<br>php - Installers for most versions of PHP<br>versions - Alternative versions of apps found in other buckets</p>
+<p>除了官方的软件仓库，Scoop也支持用户自建仓库并共享，其中dorado仓库里面有许多适合中国用户的软件。添加dorado仓库的命令如下：<code>scoop bucket add dorado https://github.com/chawyehsu/dorado</code>。</p>
+<p>此外，若多个仓库间的软件名称冲突，可以通过在软件名前添加仓库名的方式避免冲突，如scoop install dorado&#x2F;appname。</p>
+<h2 id="使用aria2加快下载速度"><a href="#使用aria2加快下载速度" class="headerlink" title="使用aria2加快下载速度"></a>使用aria2加快下载速度</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scoop install aria2 #安装aria2</span><br><span class="line">scoop config aria2-max-connection-per-server 16 #设置16线程下载</span><br><span class="line">scoop config aria2-split 16 #设置16线程下载分块</span><br><span class="line">scoop config aria2-min-split-size 1M #设置每个分块的最小体积</span><br><span class="line">scoop config aria2-enabled true #启用aira2下载，默认安装好后就是启用的</span><br></pre></td></tr></table></figure>
+<h3 id="下面的软件列表仅作暂时放置，之后会删除。"><a href="#下面的软件列表仅作暂时放置，之后会删除。" class="headerlink" title="下面的软件列表仅作暂时放置，之后会删除。"></a>下面的软件列表仅作暂时放置，之后会删除。</h3><p>Installed apps:</p>
+<p>  7zip 21.07 [main]<br>  aria2 1.36.0-1 [main]<br>  captura 8.0.0 [extras]<br>  ccleaner 5.89.9401 [extras]<br>  clash-for-windows 0.19.7 [dorado]<br>  dark 3.11.2 [main]<br>  dingtalk 6.3.25.1219101 [dorado]<br>  dismplusplus 10.1.1002.1 [extras]<br>  draw.io 16.5.1 [extras]<br>  ffmpeg 5.0 [main]<br>  git 2.35.0.windows.1 [main]<br>  github 2.9.6 [extras]<br>  gridea 0.9.2 [extras]<br>  innounp 0.50 [main]<br>  lessmsi 1.10.0 [main]<br>  marktext 0.16.3 [extras]<br>  neteasemusic 2.9.6.199543 [dorado]<br>  nodejs 17.4.0 [main]<br>  obs-studio 27.1.3 [extras]<br>  pandoc 2.17.0.1 [main]<br>  picgo 2.3.0 [dorado]<br>  potplayer 220106 [extras]<br>  qbittorrent 4.4.0 [extras]<br>  rufus 3.17 [extras]<br>  steam nightly-20200720 [extras]<br>  sublime-text 4-4126 [extras]<br>  sumatrapdf 3.3.3 [extras]<br>  trafficmonitor 1.82 [extras]<br>  typora 0.11.18 <em>hold</em> [extras]<br>  utools 2.5.2 [dorado]<br>  ventoy 1.0.64 [extras]<br>  wechat nightly-20201231 [dorado]<br>  xmind8 3.7.9 [extras]</p>
+<h2 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h2><p>我为什么要用scoop而不是Chocolatey？因为它开源。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="color: #00a596">软件</a>
+        </span>
+        
+    </div>
+    <a href="/2023/11/04/scoop-windows%E7%9A%84%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/03/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/">
+        <h2 class="post-title">我的工作流</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/3
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/03/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/09/16/%E5%8C%96%E7%AB%9E%E3%80%82/">
+        <h2 class="post-title">化竞。</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/9/16
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="化竞。"><a href="#化竞。" class="headerlink" title="化竞。"></a>化竞。</h1><p>这篇文章，我在初赛前就准备写了。</p>
+<p>在开头，我应该说我不是一个“正牌”竞赛生。目前竞赛的趋势是低龄化，我们年级正常搞化竞的都是在高一前的暑假加入团队的，而低一级的还有更早的，也就是通过“首创班”这个半违规渠道，提前一年开始学习各种竞赛。而我在高一上的寒假，才开始踏入化竞的大门。这个时候有很多人已经基本结束了初赛的第一轮学习了（基本是我去考初赛时的水平）。</p>
+<p>我当时想去搞竞赛，最初目的也很简单：想补一补课内的化学。看到我们班的各科竞赛生在这门课都不同程度的发生“偏科”（褒义），我心里想的是学什么补什么。当然第一学期我的化学确实也是一团糟，我后来想想深层原因还真不是我的问题。现在的化学教育明显是有缺陷的，基本的化学从初二才开始，位居主要学科倒数第一。要知道，物理和生物都是从小学三年级就开始的。还有一个原因，是我不太去外面补习班上课，估计寒假非常空虚，疫情又迟迟不结束，整个人处于一种浑浑噩噩的状态。不管是什么原因，我厚着脸皮去找了球哥，就这样开始了我短暂的化竞生涯。</p>
+<p>当然，我总是要“欲扬先抑”一下。说实话，竞赛对学生，是另一种消耗。竞赛的保送、强基A+固然诱人，但是其代价也是巨大的。我亲眼见证我们学校生物竞赛的同学接近2个月没有回班上课、计算机竞赛“永久性”停课对学生造成的伤害有多大，更甚者必须留级重读。化竞几乎不停课，但偶尔几次停课我也必须溜回教室，不可谓不惊险。而且往往越能出成绩的教练，停课越多。其次，竞赛确实是极度压榨时间的。参加后我才真正懂得了竞赛是学有余力同学的游戏，而不是普通人改变命运的方式。说实话，高考乃至中考其实已经到了要拼智商的地步了，竞赛亦然。竞赛就是一个年级七八十个学生，给那三四个未来可能可以进省队进国集的同学垫垫底而已，好让他们感受到虐菜的乐趣。还有一点，时间和课内成绩，只能选择一个。这一点在我这个搞竞赛的同时奉行“周末享乐主义”的人眼中是至理至真的言论，因为我自己就遭到了课内成绩带给我的暴击。</p>
+<p>寒假里，让我大为惊讶的是，我们并没有像之前的学生一样花一段时间去学高中内容，而是用3天左右学完了选修二、三的主干知识。这种知识密度和知识量是我从未感受过的。之后我们直接“跟”上了早一批的同学，开始学习大学化学的内容。从现在来看，这明显是囫囵吞枣了。我还清楚地记得，在我在判断醛、酮、醚等都要想半天的时候，我就在喧闹的教室里，看着球哥画着机理，听着同学讲着LUMO、HOMO，这给我小小的心灵留下了大大的震撼。</p>
+<p>开学后，直接开始的是预赛的复习。当一叠叠的预赛真题和模拟题摆在我眼前时，我对高考化学的羸弱暴露无遗。预赛大部分都是高考内容，我当时却不知道吃错了什么药，一直在看Clayden（当然对于之后还是有帮助的）；结果在预赛前成绩一直没有提升，对高中化学也没有一个系统的认识。在考前每周三晚自修球哥还会给我们几个“弱者”开小灶，我很感谢球哥。</p>
+<p>预赛在我的脑海里并没有很长时间，且大部分时间都在刷题。由于学校有大量的保送名额，很多人也没当回事。对于初赛，我们学校似乎更加注重有机。其实在竞赛低龄化的前提下，高二开始搞有机是正常现象。但是对于高中开始搞竞赛甚至像我这种才搞了两三个月的人来说，我很后悔没有好好搞无机，而是一直沉溺于Clayden中无法自拔（刚开始我甚至还在看邢大本，幸好改成Clayden了）。初赛的有机一年难过一年，对于第一年开始的考生，其实最有效的办法是在无机中多抢点分，有机则无需多看，懂点基本的就行。这时我也明确感觉到了我课内成绩的下降，在市统测时尤为明显。我心中有好几个原因，竞赛也是其中一个，不知道哪个才是主要的。</p>
+<p>暑假的高强度训练容易让人失去对化学的兴趣。我必须得坦白，人是会累的。虽然我知道二中这种做六休一的模式相比学军等学校已经好太多了，但是或许我不是学化学的料吧，在最后几天我已经很难继续吸收更多知识了，上课也开始迷离。至于暑假的培训，二中总是不听从学生的意见，一味往偏难怪的机构里塞人，哪怕是我去的浙大夏令营也必须去精品班，完全忽略了像我们这种人是需要良好的基础这一事实。这里我不得不吐槽一下：海亮的食堂是真的烂，寝室竟然没有阳台。</p>
+<p>最后几天，我才较为深刻地、系统地补习了一部分物化、结构和无机，并继续看了一会中有。可惜这句古话不灵验了，亡羊补牢为时已晚啊。开学时的几天还要溜回教室上课，开学前还要补暑假作业。应该说，最后几天我的水平有一定提升，但总体已经定型了。（至于考前的冲刺，我只能说，二中老师一般押不中题的嘿嘿，不要问我是怎么知道的）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/IMG_20230916_200624.jpg" alt="标哥帅气撩头"></p>
+<p>再一次走进学紫的大门，我才发现，我还是5个月前的我，一点都没变。最后的分数也是在意料之中吧。</p>
+<p>在最后的一些话里，我有几个人想深深地感谢：球哥，谢谢您牺牲自己的时间（和谈恋爱时间^_^）无私地给我们上课、讲卷子，关注我们的学习、生活，总是和我们打成一片，我们的成绩不一定好，但是你教我们时，我们很开心；谢谢二中、二钱竞赛团队的各位老师们；谢谢预赛停课时关心我为我录课的韩老师；谢谢二中高一化竞团队的各位同学们，我们遇到问题时总是互帮互助而不是单打独斗；最后还有我的父母，给我买书，帮我做后勤工作，给我支持和鼓励，谢谢！</p>
+<p>就这样，我的化竞“生涯”结束了。接下来，我回到高考中去。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/IMG_20230916_201402.jpg" alt="球哥：我真帅"></p>
+<p>2023年9月16日</p>
+<h2 id="P-S"><a href="#P-S" class="headerlink" title="P.S."></a>P.S.</h2><p>像我这种化竞初学者走过很多弯路，稍微写一点我个人认为比较好的学习路径&#x2F;资源，希望看到我的文章的后来者们少走些弯路吧。</p>
+<p>高中内容学习顺序：</p>
+<ol>
+<li>选择性必修 第二册 物质结构与性质</li>
+<li>必修 第一册</li>
+<li>必修 第二册 一、二章</li>
+<li>选择性必修 第一册 化学反应原理</li>
+<li>必修 第二册 三、四章</li>
+<li>选择性必修 第三册 有机化学基础</li>
+</ol>
+<p>大学内容学习（建议）：</p>
+<p>有机：（邢大本等变强了再看）</p>
+<p>Organic Chemistry(Jonathan Clayden &#x2F; Nick Greeves &#x2F; Stuart Warren)</p>
+<p>无机：（宋天佑、张祖德可以附带着看）</p>
+<p>Inorganic Chemistry(Weller &#x2F; Overton)</p>
+<p>刷题：</p>
+<p>Chemy32-34届题目</p>
+<p>个人整理的一些化竞笔记和知识点（可能存在错误，且最后没有时间形成体系，且缺少分析化学知识）：<a target="_blank" rel="noopener" href="https://drive.google.com/drive/folders/1QYj6Zv-Ub2JrzkMdsq_dl8L0rS3EvDAw?usp=drive_link">https://drive.google.com/drive/folders/1QYj6Zv-Ub2JrzkMdsq_dl8L0rS3EvDAw?usp=drive_link</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%B0%8F%E4%BD%9C%E6%96%87/" style="color: #ffa2c4">小作文</a>
+        </span>
+        
+    </div>
+    <a href="/2023/09/16/%E5%8C%96%E7%AB%9E%E3%80%82/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
     
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="空白棱の小站" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/7eaff11ea47a16376294217c4d421824.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="空白棱の小站"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg"/><span class="site-name">空白棱の小站</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">空白棱の小站</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.twitter.com/cyh714_twi/" target="_blank" title="Twitter"><i class="fa-brands fa-twitter" style="color: #24292e;"></i></a><a class="social-icon" href="https://t.me/CYH714" target="_blank" title=""><i class="fa-brands fa-telegram"></i></a><a class="social-icon" href="https://github.com/CYH714-github" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #24292e;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/04/21/mpv%E7%9A%84%E4%BD%BF%E7%94%A8/" title="mpv的使用"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/KkzUQfrqHXAgs51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="mpv的使用"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/04/21/mpv%E7%9A%84%E4%BD%BF%E7%94%A8/" title="mpv的使用">mpv的使用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-21T03:09:02.000Z" title="发表于 2024-04-21 11:09:02">2024-04-21</time></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/04/%E7%BE%8E%E5%8C%96%E5%90%84%E7%A7%8D%E4%B8%9C%E8%A5%BF/" title="美化各种东西"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/20231104143817.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="美化各种东西"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/04/%E7%BE%8E%E5%8C%96%E5%90%84%E7%A7%8D%E4%B8%9C%E8%A5%BF/" title="美化各种东西">美化各种东西</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T06:35:37.000Z" title="发表于 2023-11-04 14:35:37">2023-11-04</time></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/04/scoop-windows%E7%9A%84%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/" title="scoop-windows的应用商店"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/16618068.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="scoop-windows的应用商店"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/04/scoop-windows%E7%9A%84%E5%BA%94%E7%94%A8%E5%95%86%E5%BA%97/" title="scoop-windows的应用商店">scoop-windows的应用商店</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-04T06:19:23.000Z" title="发表于 2023-11-04 14:19:23">2023-11-04</time></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/11/03/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="我的工作流"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/KkzUQfrqHXAgs51.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="我的工作流"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/11/03/%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="我的工作流">我的工作流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-11-03T14:35:08.000Z" title="发表于 2023-11-03 22:35:08">2023-11-03</time></span></div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/09/16/%E5%8C%96%E7%AB%9E%E3%80%82/" title="化竞。"><img class="post-bg" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/%E4%B8%8B%E8%BC%89.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="化竞。"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/09/16/%E5%8C%96%E7%AB%9E%E3%80%82/" title="化竞。">化竞。</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-16T14:42:44.000Z" title="发表于 2023-09-16 22:42:44">2023-09-16</time></span></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Henry Chen</div><div class="author-info__description">王侯将相宁有种乎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.twitter.com/cyh714_twi/" target="_blank" title="Twitter"><i class="fa-brands fa-twitter" style="color: #24292e;"></i></a><a class="social-icon" href="https://t.me/CYH714" target="_blank" title=""><i class="fa-brands fa-telegram"></i></a><a class="social-icon" href="https://github.com/CYH714-github" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">20</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2022-07-21T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-25T13:40:55.414Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/gx1iHW5TVDayIez.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By Henry Chen</div><div class="footer_custom_text">我存放记忆的地方。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
-  if (typeof pangu === 'object') pangu.autoSpacingPage()
-  else {
-    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
-      .then(() => {
-        pangu.autoSpacingPage()
-      })
-  }
-}
+    <a class="page-num" href="/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    <a class="page-num" href="/page/3">
+        3
+    </a>
+    
+    
+    <a class="page-num" href="/page/4">
+        4
+    </a>
+    
+    
+    
+    <a class="page-num" href="/page/3/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
+    
+</div>
 
-function panguInit () {
-  if (false){
-    GLOBAL_CONFIG_SITE.isPost && panguFn()
-  } else {
-    panguFn()
-  }
-}
+    </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.png" alt="avatar" />
+        </div>
+        <div class="name">空白棱</div>
+        <div class="description">
+            <p>Description<br>…</p>
 
-document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>window.typedJSFn = {
-  init: (str) => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: (subtitleType) => {
-    if (true) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        getScript('https://cdn.jsdelivr.net/npm/typed.js/dist/typed.umd.min.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  }
-}
-</script><script>function subtitleType () {
-  if (true) {
-    typedJSFn.init([null])
-  } else {
-    document.getElementById("subtitle").textContent = null
-  }
-}
-typedJSFn.run(subtitleType)</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 空白棱の小站
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;空白棱
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>

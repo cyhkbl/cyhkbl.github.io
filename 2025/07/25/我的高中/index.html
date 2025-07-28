@@ -1,805 +1,206 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="Hexo Theme Redefine">
-    
-    <meta name="author" content="The Redefine Team">
-    
-    <!-- Completely eliminate flash of wrong theme -->
-    <script>
-        (function() {
-            const THEME_KEY = "REDEFINE-THEME-STATUS";
-            const DARK = "dark", LIGHT = "light";
-            
-            // Get preferred theme
-            function getTheme() {
-                try {
-                    const saved = localStorage.getItem(THEME_KEY);
-                    if (saved) {
-                        const { isDark } = JSON.parse(saved);
-                        return isDark ? DARK : LIGHT;
-                    }
-                } catch (e) {}
-                
-                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
-            }
-            
-            // Apply theme to document
-            function applyTheme(theme) {
-                const isDark = theme === DARK;
-                const root = document.documentElement;
-                
-                // Set data attribute for CSS variables
-                root.setAttribute("data-theme", theme);
-                
-                // Set classes for compatibility
-                root.classList.add(theme);
-                root.classList.remove(isDark ? LIGHT : DARK);
-                root.style.colorScheme = theme;
-            }
-            
-            // Initial application
-            const theme = getTheme();
-            applyTheme(theme);
-            
-            // Listen for system preference changes
-            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
-                // Only update if using system preference (no localStorage entry)
-                if (!localStorage.getItem(THEME_KEY)) {
-                    applyTheme(matches ? DARK : LIGHT);
-                }
-            });
-            
-            // Set body classes once DOM is ready
-            if (document.readyState !== "loading") {
-                document.body.classList.add(theme + "-mode");
-            } else {
-                document.addEventListener("DOMContentLoaded", () => {
-                    document.body.classList.add(theme + "-mode");
-                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
-                });
-            }
-        })();
-    </script>
-    
-    <!-- Critical CSS to prevent flash -->
-    <style>
-        :root[data-theme="dark"] {
-            --background-color: #202124;
-            --background-color-transparent: rgba(32, 33, 36, 0.6);
-            --second-background-color: #2d2e32;
-            --third-background-color: #34353a;
-            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
-            --primary-color: #0066CC;
-            --first-text-color: #ffffff;
-            --second-text-color: #eeeeee;
-            --third-text-color: #bebec6;
-            --fourth-text-color: #999999;
-            --default-text-color: #bebec6;
-            --invert-text-color: #373D3F;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --selection-color: #0066CC;
-            --shadow-color-1: rgba(255, 255, 255, 0.08);
-            --shadow-color-2: rgba(255, 255, 255, 0.05);
-        }
-        
-        :root[data-theme="light"] {
-            --background-color: #fff;
-            --background-color-transparent: rgba(255, 255, 255, 0.6);
-            --second-background-color: #f8f8f8;
-            --third-background-color: #f2f2f2;
-            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
-            --primary-color: #0066CC;
-            --first-text-color: #16171a;
-            --second-text-color: #2f3037;
-            --third-text-color: #5e5e5e;
-            --fourth-text-color: #eeeeee;
-            --default-text-color: #373D3F;
-            --invert-text-color: #bebec6;
-            --border-color: rgba(0, 0, 0, 0.08);
-            --selection-color: #0066CC;
-            --shadow-color-1: rgba(0, 0, 0, 0.08);
-            --shadow-color-2: rgba(0, 0, 0, 0.05);
-        }
-        
-        body {
-            background-color: var(--background-color);
-            color: var(--default-text-color);
-        }
-        
-        /* Apply body classes as soon as DOM is ready */
-        :root[data-theme="dark"] body {
-            background-color: var(--background-color);
-            color: var(--default-text-color);
-        }
-    </style>
-    
-    <!-- preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    
-    <!--- Seo Part-->
-    
-    <link rel="canonical" href="http://cyhkbl.github.io/2025/07/25/我的高中/"/>
-    <meta name="robots" content="index,follow">
-    <meta name="googlebot" content="index,follow">
-    <meta name="revisit-after" content="1 days">
-    
-    
-    
-        
-        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>我的高中 | 空白棱の小站</title><meta name="author" content="空白棱"><meta name="copyright" content="空白棱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="我的高中 立志 努力 为公 —— 竺可桢  昨天，我终于收到了来自浙江大学的录取通知书。我想，也是时候给自己的高中三年作个总结了。这次我不会像三年前写初中的回忆录那样彻彻底底地随时间顺流而下，而是尽量客观地谈谈我这三年的感受。 先说说二中的不足之处吧。作为杭城学子的梦校，也是浙江的“四巨头”，不得不说的是，杭二中与其它学校还是有一定差距的。二中总体而言比其它的学校更注重素质教育，体育活动课、各种节">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的高中">
 <meta property="og:url" content="http://cyhkbl.github.io/2025/07/25/%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD/index.html">
 <meta property="og:site_name" content="空白棱の小站">
-<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:description" content="我的高中 立志 努力 为公 —— 竺可桢  昨天，我终于收到了来自浙江大学的录取通知书。我想，也是时候给自己的高中三年作个总结了。这次我不会像三年前写初中的回忆录那样彻彻底底地随时间顺流而下，而是尽量客观地谈谈我这三年的感受。 先说说二中的不足之处吧。作为杭城学子的梦校，也是浙江的“四巨头”，不得不说的是，杭二中与其它学校还是有一定差距的。二中总体而言比其它的学校更注重素质教育，体育活动课、各种节">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://cyhkbl.github.io/images/redefine-og.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/images.jpg">
 <meta property="article:published_time" content="2025-07-25T06:36:54.000Z">
-<meta property="article:modified_time" content="2025-07-25T10:59:06.148Z">
+<meta property="article:modified_time" content="2025-07-28T08:07:31.985Z">
 <meta property="article:author" content="空白棱">
+<meta property="article:tag" content="小作文">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://cyhkbl.github.io/images/redefine-og.webp">
-    
-    
-    <!--- Icon Part-->
-    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
-    <meta name="theme-color" content="#A31F34">
-    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
-    <!--- Page Info-->
-    
-    <title>
-        
-            我的高中 | Theme Redefine
-        
-    </title>
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/images.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/Gyl4cqzrnjb2ME8.jpg"><link rel="canonical" href="http://cyhkbl.github.io/2025/07/25/%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: 空白棱","link":"链接: ","source":"来源: 空白棱の小站","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '我的高中',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-07-28 16:07:31'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-    
-<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-    <!--- Inject Part-->
-    
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-    
-<link rel="stylesheet" href="/css/style.css">
-
-
-    
-        
-<link rel="stylesheet" href="/css/build/tailwind.css">
-
-    
-
-    
-<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
-
-    
-<link rel="stylesheet" href="/fonts/Geist/geist.css">
-
-    <!--- Font Part-->
-    
-    
-    
-    
-    
-    
-
-    <script id="hexo-configurations">
-    window.config = {"hostname":"cyhkbl.github.io","root":"/","language":"zh-CN"};
-    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
-    window.lang_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-    window.data = {"masonry":false};
-  </script>
-    
-    <!--- Fontawesome Part-->
-    
-<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/brands.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/solid.min.css">
-
-    
-<link rel="stylesheet" href="/fontawesome/regular.min.css">
-
-    
-    
-    
-    
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="空白棱の小站" type="application/atom+xml">
-</head>
-
-
-
-<body>
-	<div class="progress-bar-container">
-	
-
-	
-	<span class="pjax-progress-bar"></span>
-	<!--        <span class="swup-progress-icon">-->
-	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
-	<!--        </span>-->
-	
-</div>
-
-<main class="page-container" id="swup">
-
-	
-
-	<div class="main-content-container flex flex-col justify-between min-h-dvh">
-		<div class="main-content-header">
-			<header class="navbar-container px-6 md:px-12">
-    <div class="navbar-content transition-navbar ">
-        <div class="left">
-            
-            <a class="logo-title" href="/">
-                
-                Theme Redefine
-                
-            </a>
-        </div>
-
-        <div class="right">
-            <!-- PC -->
-            <div class="desktop">
-                <ul class="navbar-list">
-                    
-                        
-                            
-
-                            <li class="navbar-item">
-                                <!-- Menu -->
-                                <a class=""
-                                   href="/"
-                                        >
-                                    <i class="fa-regular fa-house fa-fw"></i>
-                                    首页
-                                    
-                                </a>
-
-                                <!-- Submenu -->
-                                
-                            </li>
-                    
-                    
-                </ul>
-            </div>
-            <!-- Mobile -->
-            <div class="mobile">
-                
-                <div class="icon-item navbar-bar">
-                    <div class="navbar-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile sheet -->
-    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
-        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
-            
-                
-                    
-
-                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
-                        
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
-                           href="/"
-                        >
-                            <span>
-                                首页
-                            </span>
-                            
-                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
-                            
-                        </a>
-                        
-
-                        
-                    </li>
-            
-
-            
-            
-        </ul>
-
-        <div class="statistics flex justify-around my-2.5">
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
-        <div class="label text-third-text-color text-sm">标签</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
-        <div class="label text-third-text-color text-sm">分类</div>
-    </a>
-    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">20</div>
-        <div class="label text-third-text-color text-sm">文章</div>
-    </a>
-</div>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-		</div>
-
-		<div class="main-content-body transition-fade-up">
-			
-
-			<div class="main-content">
-				<div class="post-page-container flex relative justify-between box-border w-full h-full">
-	<div class="article-content-container">
-
-		<div class="article-title relative w-full">
-			
-			
-			
-			<img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/images.jpg" alt="我的高中" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
-			
-			<div class="w-full flex items-center absolute bottom-0 justify-start">
-				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">我的高中</h1>
-			</div>
-			
-		</div>
-
-		
-		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
-			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
-				<img src="/images/redefine-avatar.svg">
-			</div>
-			<div class="info flex flex-col justify-between">
-				<div class="author flex items-center">
-					<span class="name text-default-text-color text-lg font-semibold">The Redefine Team</span>
-					
-					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
-					
-				</div>
-				<div class="meta-info">
-					<div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2025-07-25 14:36:54</span>
-        <span class="mobile">2025-07-25 14:36:54</span>
-        <span class="hover-info">创建</span>
-    </span>
-    
-        <span class="article-date article-meta-item">
-            <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2025-07-25 18:59:06</span>
-            <span class="mobile">2025-07-25 18:59:06</span>
-            <span class="hover-info">更新</span>
-        </span>
-    
-
-    
-    
-
-    
-    
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-				</div>
-			</div>
-		</div>
-		
-
-		
-
-
-		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-			
-		</div>
-
-		
-		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
-			<div class="article-copyright-info-container">
-    <ul>
-        <li><strong>标题:</strong> 我的高中</li>
-        <li><strong>作者:</strong> The Redefine Team</li>
-        <li><strong>创建于
-                :</strong> 2025-07-25 14:36:54</li>
-        
-            <li>
-                <strong>更新于
-                    :</strong> 2025-07-25 18:59:06
-            </li>
-        
-        <li>
-            <strong>链接:</strong> https://redefine.ohevan.com/2025/07/25/我的高中/
-        </li>
-        <li>
-            <strong>
-                版权声明:
-            </strong>
-            
-
-            
-                本文章采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a> 进行许可。
-            
-        </li>
-    </ul>
-</div>
-
-		</div>
-		
-
-		
-
-		
-
-		
-		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
-			
-			<div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="prev" rel="prev" href="/2025/07/25/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/">
-					<span class="left arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-left"></i>
-					</span>
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">图床教程</span>
-						<span class="post-nav-item">上一篇</span>
-					</span>
-				</a>
-			</div>
-			
-			
-			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-				<a class="next" rel="next" href="/2025/07/23/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%AD%E5%9B%BD%E5%BC%8F%E9%85%92%E5%B1%80/">
-					<span class="title flex justify-center items-center">
-						<span class="post-nav-title-item truncate max-w-48">（转载）中国式酒局</span>
-						<span class="post-nav-item">下一篇</span>
-					</span>
-					<span class="right arrow-icon flex justify-center items-center">
-						<i class="fa-solid fa-chevron-right"></i>
-					</span>
-				</a>
-			</div>
-			
-		</div>
-		
-
-
-		
-		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
-			<div class="comments-container mt-10 w-full ">
-    <div id="comment-anchor" class="w-full h-2.5"></div>
-    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
-        评论
-    </div>
-    
-
-        
-            
-    <div id="waline"></div>
-    <script type="module" data-swup-reload-script>
-      import { init } from '/js/libs/waline.mjs';
-
-      function loadWaline() {
-        init({
-          el: '#waline',
-          serverURL: 'https://example.example.com',
-          dark: 'body[class~="dark-mode"]',
-          reaction: false,
-          requiredMeta: ['nick', 'mail'],
-          emoji: [],
-                    lang: 'zh-CN',
-        });
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
       }
-
-      if (typeof swup !== 'undefined') {
-        loadWaline();
-      } else {
-        window.addEventListener('DOMContentLoaded', loadWaline);
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
       }
-    </script>
-
-
-
-        
-    
-</div>
-
-		</div>
-		
-	</div>
-
-	
-	<div class="toc-content-container">
-		<div class="post-toc-wrap">
-	<div class="post-toc">
-		<div class="toc-title">目录</div>
-		<div class="page-title">我的高中</div>
-		
-
-	</div>
-</div>
-	</div>
-	
-</div>
-			</div>
-
-			
-		</div>
-
-		<div class="main-content-footer">
-			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
-    <div class="info-container py-3 text-center">
-        
-        <div class="text-center">
-            &copy;
-            
-              <span>2022</span>
-              -
-            
-            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Redefine Team</a>
-            
-                
-                <p class="post-count space-x-0.5">
-                    <span>
-                        共撰写了 20 篇文章
-                    </span>
-                    
-                </p>
-            
-        </div>
-        
-            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
-            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
-                
-                    <span id="busuanzi_container_site_uv" class="lg:!block">
-                        <span class="text-sm">访问人数</span>
-                        <span id="busuanzi_value_site_uv"></span>
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv" class="lg:!block">
-                        <span class="text-sm">总访问量</span>
-                        <span id="busuanzi_value_site_pv"></span>
-                    </span>
-                
-            </div>
-        
-        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
-            <span class="lg:block text-sm">由 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a> 驱动</span>
-            <span class="text-sm lg:block">主题&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
-        </div>
-        
-        
-            <div>
-                博客已运行 <span class="odometer" id="runtime_days" ></span> 天 <span class="odometer" id="runtime_hours"></span> 小时 <span class="odometer" id="runtime_minutes"></span> 分钟 <span class="odometer" id="runtime_seconds"></span> 秒
-            </div>
-        
-        
-            <script data-swup-reload-script>
-                try {
-                    function odometer_init() {
-                    const elements = document.querySelectorAll('.odometer');
-                    elements.forEach(el => {
-                        new Odometer({
-                            el,
-                            format: '( ddd).dd',
-                            duration: 200
-                        });
-                    });
-                    }
-                    odometer_init();
-                } catch (error) {}
-            </script>
-        
-        
-        
-    </div>  
-</footer>
-		</div>
-	</div>
-
-	
-	<div class="post-tools">
-		<div class="post-tools-container">
-	<ul class="article-tools-list">
-		<!-- TOC aside toggle -->
-		
-		<li class="right-bottom-tools page-aside-toggle">
-			<i class="fa-regular fa-outdent"></i>
-		</li>
-		
-
-		<!-- go comment -->
-		
-		<li class="go-comment">
-			<i class="fa-regular fa-comments"></i>
-		</li>
-		
-	</ul>
-</div>
-	</div>
-	
-
-	<div class="right-side-tools-container">
-		<div class="side-tools-container">
-	<ul class="hidden-tools-list">
-		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
-			<i class="fa-regular fa-magnifying-glass-plus"></i>
-		</li>
-
-		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
-			<i class="fa-regular fa-magnifying-glass-minus"></i>
-		</li>
-
-		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
-			<i class="fa-regular fa-moon"></i>
-		</li>
-
-		<!-- rss -->
-		
-
-		
-
-		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
-			<i class="fa-regular fa-arrow-down"></i>
-		</li>
-	</ul>
-
-	<ul class="visible-tools-list">
-		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
-			<i class="fa-regular fa-cog fa-spin"></i>
-		</li>
-		
-		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
-			<i class="arrow-up fas fa-arrow-up"></i>
-			<span class="percent"></span>
-		</li>
-		
-		
-	</ul>
-</div>
-	</div>
-
-	<div class="image-viewer-container">
-	<img src="">
-</div>
-
-	
-
-</main>
-
-
-
-<script src="/js/build/libs/Swup.min.js"></script>
-
-<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
-
-<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
-
-<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
-
-<script>
-    const swup = new Swup({
-        plugins: [
-            new SwupScriptsPlugin({
-                optin: true,
-            }),
-            new SwupProgressPlugin(),
-            new SwupScrollPlugin({
-                offset: 80,
-            }),
-            new SwupSlideTheme({
-                mainElement: ".main-content-body",
-            }),
-            new SwupPreloadPlugin(),
-        ],
-        containers: ["#swup"],
-    });
-</script>
-
-
-
-
-	
-<script src="/js/build/tools/imageViewer.js" type="module"></script>
-
-<script src="/js/build/utils.js" type="module"></script>
-
-<script src="/js/build/main.js" type="module"></script>
-
-<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
-
-<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
-
-<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
-
-<script src="/js/build/layouts/categoryList.js" type="module"></script>
-
-
-
-
-
-    
-<script src="/js/build/tools/codeBlock.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/layouts/lazyload.js" type="module"></script>
-
-
-
-
-    
-<script src="/js/build/tools/runtime.js"></script>
-
-    
-<script src="/js/build/libs/odometer.min.js"></script>
-
-    
-<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
-
-
-
-
+      document.head.appendChild(script)
+    })
   
-<script src="/js/build/libs/Typed.min.js"></script>
-
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
   
-<script src="/js/build/plugins/typed.js" type="module"></script>
-
-
-
-
-
-
-
-
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-<script src="/js/build/libs/anime.min.js"></script>
-
-
-
-
-
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="空白棱の小站" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/images.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="空白棱の小站"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg"/><span class="site-name">空白棱の小站</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">我的高中</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-07-25T06:36:54.000Z" title="发表于 2025-07-25 14:36:54">2025-07-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="我的高中"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="我的高中"><a href="#我的高中" class="headerlink" title="我的高中"></a>我的高中</h1><blockquote>
+<p>立志 努力 为公 —— 竺可桢</p>
+</blockquote>
+<p>昨天，我终于收到了来自浙江大学的录取通知书。我想，也是时候给自己的高中三年作个总结了。这次我不会像三年前写初中的回忆录那样彻彻底底地随时间顺流而下，而是尽量客观地谈谈我这三年的感受。</p>
+<p>先说说二中的不足之处吧。作为杭城学子的梦校，也是浙江的“四巨头”，不得不说的是，杭二中与其它学校还是有一定差距的。二中总体而言比其它的学校更注重素质教育，体育活动课、各种节日与表演活动接连不断。但是素质教育并不是活动堆叠起来的形式，活动社团丰富也并不代表素质教育落到了实处。可能在高考这样无情的遴选下，像“南通模式”那样，一切为实实在在的的学习让路，在这个特殊阶段是更优解。二中的强制“非学习”时间安排过多，如“学科讲座”、午间寝室检查等，破坏了学生自主的学习和休息时间，个人认为高中三年的自修课数量是不足的。种种原因叠加，间接降低了学习效率。</p>
+<p>之前看到过知乎上的一则回答，镇海中学的老师普遍是师范院校毕业的，评论区表示不解。二中喜欢招聘清北毕业的“名校生”教学，但这些名校出身的老师们忽视了教与学的不同。一个人的教学能力与学习能力往往不能同等看待。我并不是一棍子打死所有名校生，我也遇到了许许多多名校出身让我受益终生的老师，但是名校学生时代高强度高密度的知识灌输，导致他们忽视了所教学生的水平，往往传授过难的知识。实际上杭师大、浙师大的学生足够胜任高中教师的教学内容，清北名校的资源争夺让师范专业的老师们失去工作的机会，师范专业的老师们明明有教学技巧却不能得到运用，我觉得这是一种悲哀。也许不要过分关注外界的评价，在招聘与宣传时保持正确的价值判断更为可贵。我也真诚地呼吁二中不要过于强调偏难怪、过于强调思维，扎扎实实把我们普通学生的基础打好，套路化解题练熟，比几个小时琢磨数学19题最后一问更为重要。</p>
+<p>二中的班型同样是被动地契合外界评价体系的典型。快班（竞赛班）、中班（实验班）年年增加，慢班（平行班）逐渐减少，导致同学、师资的平均化，最明显例子的是每个班都会有某个&#x2F;某几个实力非常强大的老师。但是为了避免引发争议，这里不过多展开。</p>
+<p>“表面功夫”在生活上也有集中体现。记得我们高一刚进学校时就听说寝室会在暑假精装修，然而直至毕业，3~6楼也没有进行装修（也是苦了学弟学妹们了），只有开放参观的1楼2楼拥有比较现代化的寝室环境（不过浙大也是80年代风格哈哈哈）。食堂的菜品味道不错，但是食品安全仍有待提高，偶尔会吃到较小的塑料片和头发。除了一位姓周的大爷总是给我们打足量菜以外，其它的工作人员还是有食堂打菜抠门的习惯，所以我三年里几乎每一餐都排到那个最长的队伍打饭（真的发自内心感谢周大爷）。</p>
+<p>二中的开销其实相对较大。活动越多，与活动相关的服装道具、食物人员等等也越多，从而带来了较多的“家委会”费用。虽然公办学校的学费和住宿费很低，但是由于剧烈的竞争压力，家长们往往会给孩子报大量的课程，这也是一笔不菲的支出。所以我也希望教育局能够放宽校内补课（这样家长或许会把钱给老师），间接减少了校外教培的支出。</p>
+<p>对二中的所谓“负面”评价，可以说是“爱之愈深，责之愈切“，本意是希望母校能越来越好。所以，我还是想用更多笔墨记录在二中的美好回忆。</p>
+<p>二中实际上有一点点像暴躁+微缩版的大学，学校里的同学们总是静力不足而活泼有余（当然也有例外），在这里的学习氛围也是比较宽松的。压力确实主要是同学间相互的竞争，这种竞争确实是相当轻松愉快的。杭二的一大“卖点”是竞赛，我在参加化学竞赛的时候也结交了很多朋友和“佬”，这种课内外结合的学习理念是我喜欢的。当然，这三年的学习节奏是比较快的，作业量（虽然你不做任何作业也没关系）是比较多的。我也在这三年整理总结归纳了许多经验与技巧。有时候，我总是看着那些轻轻松松没怎么学就进入清北的同学而感到嫉妒，但我后来发现，二中是属于他们的。在这里建议，有（数学&#x2F;物理&#x2F;化学&#x2F;生物学&#x2F;计算机）天赋的同学一定要报考二中，你会收获这辈子最爽的三年。对于普通优秀的同学，二中只是一个证明你优秀的平台。从优秀到卓越的道路，二中不一定能给到你。</p>
+<p>毕业以后，我才感慨自己竟然“忙”到没去过二中之巅，也没有完整绕过碎心湖一圈，往往只是匆匆而过，心里想着下次一定。二中的环境和外立面做的极为精致，碎心湖旁的垂柳樱花（桃花？）、篮球场两侧的山花烂漫（现在没了）、宿舍楼与钱宁楼间的林荫大道，比二中本身给我留下的印象更加深刻。二中很大，大到外来的参观者常常拉着我指路；二中也很小，竺廊一隅的毕业学长留言就能让我思绪纷飞。无论外界怎样诋毁二中，他们都不会诋毁二中精致与悠闲共融的校园环境，若是来参观也必定沉醉于校园一景。</p>
+<p>二中的活动，正如前文所说，“丰富过头了”。不过仅论活动本身，确实是全国质量最好的（之一）。到了二中，我才知道招生时的社团俱乐部不是吹牛的，我才知道原来学校里真有个方回春堂会在传统节日给我们古朴的香囊，我才知道原来一个班超过一半人都过了钢琴八级……放假三天的运动会（校方严查内卷）、春秋游的云上漫步、十佳歌手的一展歌喉、蓝点的深情演唱、课本剧的社死现场、大合唱的“取悦老师”、MAY舞团的……（这个不太好说）、体活课的挥汗如雨、还有各种“周”，让我这个闷头不参加活动的人也感受到了高中的多姿多彩。</p>
+<p>二中总是让人在一些小的方面感到温暖。不论是每个月（可能）一次的免费午餐，或是高三周末的自助餐，还是几个月一次的集体生日，抑或是校园内的各种快闪，这些精心设计的活动确实让人有很强的归属感。二中的校友们与母校的联系比较强，校友圈也比较庞大，学长学姐们也会耐心地为我们的未来发展答疑解惑，这种正向反馈是名校的另一层光环。有人说宁做鸡头不做凤尾，我却觉得做凤尾才能有仰望星空的机会，这也是二中带给我的一笔宝贵财富。</p>
+<p>到现在我才明白，二中带给我的并不是卓越的成绩或是成功的人生，而是一种印象和感受。当忙碌的答疑老师在间隙拍下紫红色的晚霞，当运动会的结尾全校师生在操场涌作狂欢的波浪，当高考的前夜我们在教学楼放飞青春的纸飞机，当清晨的我们随着下弦月起跑，无数个埋头刷题到晚上十点的我们，好像为生命赋予了某种意义与存在的价值。如果说让我在初三拥有重新选择的机会，现在的我可能不会选择二中了，但是我并不后悔，因为在二中我用人生中最美好的几年，感受了人生中最快乐的种种。成绩是评价人的重要指标，但不是唯一指标。刻苦与提升在大学依旧不晚，但是能同时拥有青春和快乐的人，在这世间能有多少？</p>
+<p>在离别时我看着二中的红墙黛瓦，感慨高中的三年也就这样结束了。这段时间里既有快乐也有痛苦，然而正如我在高二写给高考前的自己的那封信中说的那样——过程本身就是一种意义。三年的高中生活，无论结果如何，经历的过程便是成长和成熟。</p>
+<p>“我们在此铭心相约：一切皆不能将我和祖国的命运分开，无论是天灾，还是人祸;是金钱，还是权势;是疾病，还是劳累。是为志。由此，我将发奋努力，上下求索，勤于思考，勇于实践。是为行。直至民族复兴，天下大同，此心乃敢稍息。是为公。赤子之心，山川可鉴。谨此镌金刊石，以为共勉。”二中，是我一生的骄傲。我同样希望，二中能够把非议与评判抛在身后，在不被看好的目光下涅槃重生。</p>
+<p>2025年7月27日</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://cyhkbl.github.io">空白棱</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://cyhkbl.github.io/2025/07/25/%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD/">http://cyhkbl.github.io/2025/07/25/%E6%88%91%E7%9A%84%E9%AB%98%E4%B8%AD/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://cyhkbl.github.io" target="_blank">空白棱の小站</a>！</span></div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/07/25/%E5%9B%BE%E5%BA%8A%E6%95%99%E7%A8%8B/" title="图床教程"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/43027895" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">图床教程</div></div></a></div><div class="next-post pull-right"><a href="/2025/07/23/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%E4%B8%AD%E5%9B%BD%E5%BC%8F%E9%85%92%E5%B1%80/" title="（转载）中国式酒局"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed/2acef0a4d7f24c899c45b14ee30ae0e6.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">（转载）中国式酒局</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/qKmPF4r6OZ8RIzs.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">空白棱</div><div class="author-info__description">王侯将相宁有种乎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">19</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="https://www.twitter.com/cyh714_twi/" target="_blank" title="Twitter"><i class="fa-brands fa-twitter" style="color: #24292e;"></i></a><a class="social-icon" href="https://t.me/CYH714" target="_blank" title=""><i class="fa-brands fa-telegram"></i></a><a class="social-icon" href="https://github.com/CYH714-github" target="_blank" title="Github"><i class="fa-brands fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/gx1iHW5TVDayIez.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2025 By 空白棱</div><div class="footer_custom_text">我存放记忆的地方。</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
 
-<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
 
-<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
-
-
-
-
-<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
-
-
-<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
-
-
-
-
-
-	
-</body>
-
-</html>
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

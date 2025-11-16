@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>加密货币洗钱手法 | 空白棱的小站</title><meta name="author" content="空白棱"><meta name="copyright" content="空白棱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="加密货币洗钱手法 在阅读本文之前，建议提前阅读我之前转载的文章（转载）（译） 捍卫自由的互联网，对 Web3 说不。 作者提倡严厉打击这种金融犯罪行为，本文将详细拆解这种犯罪手法的具体操作流程。  什么是对倒交易？对倒交易，也称为洗售交易或虚假交易，是一种市场操纵形式。  核心定义：指的是同一个人或关联团体，同时充当一笔交易的买方和卖方，从而制造出市场活跃、交易量放大、价格变动的假象，但资产的实际">
+<meta property="og:type" content="article">
+<meta property="og:title" content="加密货币洗钱手法">
+<meta property="og:url" content="http://cyhkbl.github.io/2025/11/16/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E6%B4%97%E9%92%B1%E6%89%8B%E6%B3%95/index.html">
+<meta property="og:site_name" content="空白棱的小站">
+<meta property="og:description" content="加密货币洗钱手法 在阅读本文之前，建议提前阅读我之前转载的文章（转载）（译） 捍卫自由的互联网，对 Web3 说不。 作者提倡严厉打击这种金融犯罪行为，本文将详细拆解这种犯罪手法的具体操作流程。  什么是对倒交易？对倒交易，也称为洗售交易或虚假交易，是一种市场操纵形式。  核心定义：指的是同一个人或关联团体，同时充当一笔交易的买方和卖方，从而制造出市场活跃、交易量放大、价格变动的假象，但资产的实际">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png">
+<meta property="article:published_time" content="2025-11-16T02:02:00.000Z">
+<meta property="article:modified_time" content="2025-11-16T02:06:56.970Z">
+<meta property="article:author" content="空白棱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "加密货币洗钱手法",
+  "url": "http://cyhkbl.github.io/2025/11/16/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E6%B4%97%E9%92%B1%E6%89%8B%E6%B3%95/",
+  "image": "https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png",
+  "datePublished": "2025-11-16T02:02:00.000Z",
+  "dateModified": "2025-11-16T02:06:56.970Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "空白棱",
+      "url": "http://cyhkbl.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png"><link rel="canonical" href="http://cyhkbl.github.io/2025/11/16/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E6%B4%97%E9%92%B1%E6%89%8B%E6%B3%95/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '加密货币洗钱手法',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" alt="Logo"><span class="site-name">空白棱的小站</span></a><a class="nav-page-title" href="/"><span class="site-name">加密货币洗钱手法</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">加密货币洗钱手法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-11-16T02:02:00.000Z" title="发表于 2025-11-16 10:02:00">2025-11-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="加密货币洗钱手法"><a href="#加密货币洗钱手法" class="headerlink" title="加密货币洗钱手法"></a>加密货币洗钱手法</h1><blockquote>
+<p>在阅读本文之前，建议提前阅读我之前转载的文章<a href="https://cyhkbl.github.io/2023/08/10/%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%EF%BC%88%E8%AF%91%EF%BC%89-%E6%8D%8D%E5%8D%AB%E8%87%AA%E7%94%B1%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91%EF%BC%8C%E5%AF%B9-Web3-%E8%AF%B4%E4%B8%8D/">（转载）（译） 捍卫自由的互联网，对 Web3 说不</a>。</p>
+<p>作者提倡严厉打击这种金融犯罪行为，本文将详细拆解这种犯罪手法的具体操作流程。</p>
+</blockquote>
+<h2 id="什么是对倒交易？"><a href="#什么是对倒交易？" class="headerlink" title="什么是对倒交易？"></a>什么是对倒交易？</h2><p><strong>对倒交易</strong>，也称为洗售交易或虚假交易，是一种市场操纵形式。</p>
+<ul>
+<li><strong>核心定义</strong>：指的是<strong>同一个人或关联团体，同时充当一笔交易的买方和卖方</strong>，从而制造出市场活跃、交易量放大、价格变动的假象，但资产的实际所有权并没有发生真正的转移。</li>
+<li><strong>传统市场的例子</strong>：比如我拥有大量某公司的股票，我想让它看起来交易火爆。我可以用我的A账户挂出一个很高的卖单，同时用我控制的B账户去买入这个卖单。对外界来看，这笔交易真实发生了，股价也被推高到了这个新高点。但实际上，钱从左口袋进了右口袋，股票也是。</li>
+<li><strong>在加密市场的特点</strong>：由于加密货币交易所的匿名性和全球性，以及对账户控制权的认定比传统券商更宽松，进行对倒交易变得异常容易。一个操纵者可以轻松创建成千上万个钱包地址，在这些地址之间来回交易某个代币，几乎零成本地伪造出交易量和价格趋势。</li>
+</ul>
+<h2 id="整套洗钱流程的详细拆解"><a href="#整套洗钱流程的详细拆解" class="headerlink" title="整套洗钱流程的详细拆解"></a>整套洗钱流程的详细拆解</h2><h3 id="第一阶段：准备“黑钱”与设立前端载体"><a href="#第一阶段：准备“黑钱”与设立前端载体" class="headerlink" title="第一阶段：准备“黑钱”与设立前端载体"></a><strong>第一阶段：准备“黑钱”与设立前端载体</strong></h3><ul>
+<li><strong>起点</strong>：缅北诈骗集团通过电信诈骗、网络赌博、杀猪盘等非法手段，获得了大量“黑钱”（赃款）。这些钱通常是人民币或其他法币，分散在成千上万个被控制的银行账户（“人头账户”）里。</li>
+<li><strong>第一步：成立“合法”基金</strong>：他们会在某个监管较宽松或容易被“忽悠”的地区（例如，某些离岸金融中心或东南亚国家），通过复杂的股权结构找代理人在法理上成立一个看起来<strong>合法合规的基金或投资公司</strong>。这个实体将成为所有后续“合法”操作的白手套。</li>
+</ul>
+<h3 id="第二阶段：将黑钱转化为真实世界资产"><a href="#第二阶段：将黑钱转化为真实世界资产" class="headerlink" title="第二阶段：将黑钱转化为真实世界资产"></a><strong>第二阶段：将黑钱转化为真实世界资产</strong></h3><ul>
+<li><strong>动作</strong>：这个“白手套”基金开始动用黑钱，在现实世界中投资购买<strong>有真实价值的、不易贬值的资产</strong>。</li>
+<li><strong>选择资产的标准</strong>：<ul>
+<li><strong>价值不易确定</strong>：如艺术品、古董、稀有珠宝。</li>
+<li><strong>有稳定需求和价值</strong>：如房地产、大宗商品（矿产、农产品）。</li>
+<li><strong>新兴且监管模糊的领域</strong>：如数字基础设施（服务器农场）、知识产权等。</li>
+</ul>
+</li>
+<li><strong>目的</strong>：将无形的、危险的“现金”信用，转化为有形的、受法律保护的“物权”信用。这是洗钱流程中至关重要的“放置”和“离析”环节。调查机构很难直接证明这栋楼、这幅画最初的购买资金是来自缅北的诈骗款。</li>
+</ul>
+<h3 id="第三阶段：资产RWA化——关键一步"><a href="#第三阶段：资产RWA化——关键一步" class="headerlink" title="第三阶段：资产RWA化——关键一步"></a><strong>第三阶段：资产RWA化——关键一步</strong></h3><ul>
+<li><strong>动作</strong>：将这些真实世界资产进行 <strong>“真实世界资产代币化”</strong>。<ul>
+<li>他们会成立或合作一个区块链项目，声称将之前购买的房地产、艺术品等资产打包，并以此为背书发行对应的加密代币。例如，一栋价值1000万美元的楼，发行1000万个代币，每个代币理论上代表这栋楼百万分之一的所有权或收益权。</li>
+<li>这个步骤在技术上和法律上都很复杂，但他们可以通过发布看似合规的白皮书、找不负责的第三方出具模糊的审计报告等方式，来包装这个RWA项目。</li>
+</ul>
+</li>
+<li><strong>目的</strong>：<ol>
+<li><strong>流动性创造</strong>：将原本非标、难以快速变现的资产（如房产），变成了可以在全球7x24小时交易的、高度流动性的加密代币。</li>
+<li><strong>进入加密生态系统</strong>：这是将赃物从受严格监管的传统金融体系，转移到监管相对薄弱、匿名性更强的加密金融体系的关键一跳。</li>
+<li><strong>制造估值模糊</strong>：代币的价格可以由多种因素决定，为后续操纵价格提供了借口和空间。</li>
+</ol>
+</li>
+</ul>
+<h3 id="第四阶段：坐庄操纵与对倒交易拉盘"><a href="#第四阶段：坐庄操纵与对倒交易拉盘" class="headerlink" title="第四阶段：坐庄操纵与对倒交易拉盘"></a><strong>第四阶段：坐庄操纵与对倒交易拉盘</strong></h3><ul>
+<li><strong>动作</strong>：诈骗集团（或其控制的关联方）开始扮演“做市商”的角色，对RWA代币进行价格操纵。<ul>
+<li><strong>控盘</strong>：由于代币的大部分可能都掌握在他们自己手中，外部流通盘很小，他们很容易控盘。</li>
+<li><strong>对倒交易拉高价格</strong>：他们利用其控制的成千上万个加密钱包地址，在这些地址之间以<strong>不断升高的价格</strong>进行大量的对倒交易。</li>
+<li><strong>制造假象</strong>：在交易所的公开数据上，这会显示出该RWA代币<strong>交易量巨大、价格持续飙升</strong>的“繁荣”景象，吸引不明真相的散户投资者和算法交易机器人跟风买入。</li>
+</ul>
+</li>
+</ul>
+<h3 id="第五阶段：套现“洗白”与最终退出"><a href="#第五阶段：套现“洗白”与最终退出" class="headerlink" title="第五阶段：套现“洗白”与最终退出"></a><strong>第五阶段：套现“洗白”与最终退出</strong></h3><ul>
+<li><strong>动作</strong>：当价格被炒到足够高，并有真实的外部投资者开始买入时，操纵者便开始<strong>悄悄地将自己手中的代币卖给这些接盘者</strong>。</li>
+<li><strong>流程</strong>：<ol>
+<li><strong>出售代币</strong>：他们用自己控制的、成本极低的代币，去交换外部投资者投入的“干净”的加密货币（如USDT、USDC等稳定币，或者是比特币、以太坊）。</li>
+<li><strong>资金汇集</strong>：将这些干净的加密货币在不同钱包间转移，混淆踪迹。</li>
+<li><strong>兑换法币</strong>：通过合规的加密货币交易所（利用其OTC场外交易平台）、或是其他不受监管的渠道，将这些干净的加密货币兑换成美元、欧元等法币，并转入由“白手套”基金控制的、在传统银行的“干净”账户中。</li>
+</ol>
+</li>
+<li><strong>最终结果</strong>：至此，流程完成。最初的“黑钱”经过 <strong>“购买实物资产 -&gt; RWA代币化 -&gt; 操纵拉盘 -&gt; 高价卖出”</strong> 这一系列操作，最终变成了躺在合法银行账户里的、来源看似是“成功的加密资产投资”所得的<strong>合法利润</strong>。赃款被成功“洗白”。</li>
+</ul>
+<hr>
+<p>这套模式本质上是将传统洗钱的“洗物-转售”模式（如用黑钱买古董店，再把店里的真古董标天价卖给同伙“洗钱”）升级到了数字时代。</p>
+<p><strong>其核心风险与挑战在于：</strong></p>
+<ol>
+<li><strong>监管滞后</strong>：全球对于RWA的监管框架尚不完善，特别是跨司法管辖区的监管合作存在漏洞。</li>
+<li><strong>技术复杂性</strong>：区块链的匿名性和跨境特性使得追踪资金流向变得异常困难。</li>
+<li><strong>信息不对称</strong>：普通投资者很难核实RWA项目背后的资产是否真实、估值是否合理、抵押是否足额，极易被虚假宣传和价格操纵所蒙蔽。</li>
+</ol>
+</article><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width no-desc" href="/2025/11/06/C%E7%9B%98%E6%96%87%E4%BB%B6%E6%B8%85%E7%90%86%E6%8C%87%E5%8D%97/" title="C盘文件清理指南"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/cd.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">C盘文件清理指南</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">空白棱</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="/chenyiheng070104@outlook.com" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/cyhkbl" target="_blank" title="Github"><i class="fa-brands fa-square-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E6%B4%97%E9%92%B1%E6%89%8B%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">加密货币洗钱手法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E5%80%92%E4%BA%A4%E6%98%93%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是对倒交易？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E5%A5%97%E6%B4%97%E9%92%B1%E6%B5%81%E7%A8%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E6%8B%86%E8%A7%A3"><span class="toc-number">1.2.</span> <span class="toc-text">整套洗钱流程的详细拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%87%86%E5%A4%87%E2%80%9C%E9%BB%91%E9%92%B1%E2%80%9D%E4%B8%8E%E8%AE%BE%E7%AB%8B%E5%89%8D%E7%AB%AF%E8%BD%BD%E4%BD%93"><span class="toc-number">1.2.1.</span> <span class="toc-text">第一阶段：准备“黑钱”与设立前端载体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%B0%86%E9%BB%91%E9%92%B1%E8%BD%AC%E5%8C%96%E4%B8%BA%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E8%B5%84%E4%BA%A7"><span class="toc-number">1.2.2.</span> <span class="toc-text">第二阶段：将黑钱转化为真实世界资产</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%EF%BC%9A%E8%B5%84%E4%BA%A7RWA%E5%8C%96%E2%80%94%E2%80%94%E5%85%B3%E9%94%AE%E4%B8%80%E6%AD%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">第三阶段：资产RWA化——关键一步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%9D%90%E5%BA%84%E6%93%8D%E7%BA%B5%E4%B8%8E%E5%AF%B9%E5%80%92%E4%BA%A4%E6%98%93%E6%8B%89%E7%9B%98"><span class="toc-number">1.2.4.</span> <span class="toc-text">第四阶段：坐庄操纵与对倒交易拉盘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%A5%97%E7%8E%B0%E2%80%9C%E6%B4%97%E7%99%BD%E2%80%9D%E4%B8%8E%E6%9C%80%E7%BB%88%E9%80%80%E5%87%BA"><span class="toc-number">1.2.5.</span> <span class="toc-text">第五阶段：套现“洗白”与最终退出</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/gx1iHW5TVDayIez.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2025 By 空白棱</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

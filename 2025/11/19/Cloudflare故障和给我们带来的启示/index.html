@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Cloudflare故障和给我们带来的启示 | 空白棱的小站</title><meta name="author" content="空白棱"><meta name="copyright" content="空白棱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Cloudflare故障和给我们带来的启示就在昨天（2025年11月18日），全球知名的CDN和网络安全服务提供商Cloudflare经历了一次大规模的服务中断，影响了大量网站的正常访问。我是在打开butterfly主题的某张图片时发现无法加载才注意到这个问题的，后来发现linux.do也无法访问了。当然，此次事故影响较大的是X和ChatGPT等网站。 Cloudflare 官方的复盘报告可以查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cloudflare故障和给我们带来的启示">
+<meta property="og:url" content="http://cyhkbl.github.io/2025/11/19/Cloudflare%E6%95%85%E9%9A%9C%E5%92%8C%E7%BB%99%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%AF%E7%A4%BA/index.html">
+<meta property="og:site_name" content="空白棱的小站">
+<meta property="og:description" content="Cloudflare故障和给我们带来的启示就在昨天（2025年11月18日），全球知名的CDN和网络安全服务提供商Cloudflare经历了一次大规模的服务中断，影响了大量网站的正常访问。我是在打开butterfly主题的某张图片时发现无法加载才注意到这个问题的，后来发现linux.do也无法访问了。当然，此次事故影响较大的是X和ChatGPT等网站。 Cloudflare 官方的复盘报告可以查看">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/CF_logo.webp">
+<meta property="article:published_time" content="2025-11-19T04:59:00.000Z">
+<meta property="article:modified_time" content="2025-11-22T11:57:22.403Z">
+<meta property="article:author" content="空白棱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/CF_logo.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cloudflare故障和给我们带来的启示",
+  "url": "http://cyhkbl.github.io/2025/11/19/Cloudflare%E6%95%85%E9%9A%9C%E5%92%8C%E7%BB%99%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%AF%E7%A4%BA/",
+  "image": "https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/CF_logo.webp",
+  "datePublished": "2025-11-19T04:59:00.000Z",
+  "dateModified": "2025-11-22T11:57:22.403Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "空白棱",
+      "url": "http://cyhkbl.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png"><link rel="canonical" href="http://cyhkbl.github.io/2025/11/19/Cloudflare%E6%95%85%E9%9A%9C%E5%92%8C%E7%BB%99%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%AF%E7%A4%BA/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta name="google-site-verification" content="Go4z1bAooM4jOaNaQyX4uphfmNLULqYuGZ1pElKd8t4"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Cloudflare故障和给我们带来的启示',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/themes/blue/pace-theme-minimal.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/CF_logo.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" alt="Logo"><span class="site-name">空白棱的小站</span></a><a class="nav-page-title" href="/"><span class="site-name">Cloudflare故障和给我们带来的启示</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Cloudflare故障和给我们带来的启示</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-11-19T04:59:00.000Z" title="发表于 2025-11-19 12:59:00">2025-11-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">516</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Cloudflare故障和给我们带来的启示"><a href="#Cloudflare故障和给我们带来的启示" class="headerlink" title="Cloudflare故障和给我们带来的启示"></a>Cloudflare故障和给我们带来的启示</h1><p>就在昨天（2025年11月18日），全球知名的CDN和网络安全服务提供商Cloudflare经历了一次大规模的服务中断，影响了大量网站的正常访问。我是在打开butterfly主题的某张图片时发现无法加载才注意到这个问题的，后来发现linux.do也无法访问了。当然，此次事故影响较大的是X和ChatGPT等网站。</p>
+<p>Cloudflare 官方的复盘报告可以查看<a target="_blank" rel="noopener" href="https://blog.cloudflare.com/zh-cn/18-november-2025-outage/">这里</a>。概括起来有以下几点：</p>
+<ol>
+<li><strong>数据库权限变更</strong>：为提升ClickHouse集群安全性，将隐式权限改为显式权限。</li>
+<li><strong>查询返回数据翻倍</strong>：变更后，生成Bot Management（机器人管理）特征文件的SQL查询不再只返回default数据库的列，而是把底层r0数据库的列也重复返回，导致特征文件行数&#x2F;大小暴增一倍以上。</li>
+<li><strong>特征文件超限崩溃</strong>：全球Edge服务器加载这个超大特征文件时，Bot Management模块触发硬编码的特征数量上限（200个），代码直接panic，导致核心代理进程崩溃，返回大量500&#x2F;5xx错误。</li>
+<li><strong>影响扩散</strong>：Bot Management是核心代理的必经模块，几乎所有流量都受影响；Workers KV、Access、Turnstile、Dashboard登录等依赖核心代理的服务也连带故障。</li>
+</ol>
+<p>一次本意提升数据库安全性的权限变更，意外让Bot Management特征文件大小翻倍，超出Edge代码硬编码上限，导致全球核心代理崩溃，是典型的配置变更引发的连锁故障，而非攻击。  </p>
+<p>这次事件是 Cloudflare 自 2019 年以来最严重的一次服务中断。我们可以感受到，互联网基础设施的瘫痪给我们的日常生活的巨大灾难。问题就在于，Agent的大量使用是不是隐形地增加了这些错误出现的概率？Agent对未来的影响，还难以确定。</p>
+</article><div class="tag_share"></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/11/20/%E7%BB%8F%E6%B5%8E%E9%87%91%E8%9E%8D%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title=""><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2"></div></div></div></a><a class="pagination-related  no-desc" href="/2025/11/16/%E5%8A%A0%E5%AF%86%E8%B4%A7%E5%B8%81%E6%B4%97%E9%92%B1%E6%89%8B%E6%B3%95/" title="加密货币洗钱手法"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/chem.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">加密货币洗钱手法</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">空白棱</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="/chenyiheng070104@outlook.com" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/cyhkbl" target="_blank" title="Github"><i class="fa-brands fa-square-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Cloudflare%E6%95%85%E9%9A%9C%E5%92%8C%E7%BB%99%E6%88%91%E4%BB%AC%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%AF%E7%A4%BA"><span class="toc-number">1.</span> <span class="toc-text">Cloudflare故障和给我们带来的启示</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/gx1iHW5TVDayIez.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2025 By 空白棱</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"></div></div></body></html>

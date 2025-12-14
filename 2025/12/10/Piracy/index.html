@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Piracy | 空白棱的小站</title><meta name="author" content="空白棱"><meta name="copyright" content="空白棱"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Piracy 声明：本文仅供逆向以及密码学学习者技术研究的资源查找。请勿将本文内容用于任何非法活动。  Windows激活工具Microsoft Activation Scripts (MAS)： https:&#x2F;&#x2F;massgrave.dev 云萌 Windows 10+ 激活工具： https:&#x2F;&#x2F;github.com&#x2F;TGSAN&#x2F;CMWTAT_Digital_Edition KMS.CX： ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Piracy">
+<meta property="og:url" content="http://cyhkbl.github.io/2025/12/10/Piracy/index.html">
+<meta property="og:site_name" content="空白棱的小站">
+<meta property="og:description" content="Piracy 声明：本文仅供逆向以及密码学学习者技术研究的资源查找。请勿将本文内容用于任何非法活动。  Windows激活工具Microsoft Activation Scripts (MAS)： https:&#x2F;&#x2F;massgrave.dev 云萌 Windows 10+ 激活工具： https:&#x2F;&#x2F;github.com&#x2F;TGSAN&#x2F;CMWTAT_Digital_Edition KMS.CX： ht">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/piracy.webp">
+<meta property="article:published_time" content="2025-12-10T10:57:05.000Z">
+<meta property="article:modified_time" content="2025-12-13T07:55:43.930Z">
+<meta property="article:author" content="空白棱">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/piracy.webp"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Piracy",
+  "url": "http://cyhkbl.github.io/2025/12/10/Piracy/",
+  "image": "https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/piracy.webp",
+  "datePublished": "2025-12-10T10:57:05.000Z",
+  "dateModified": "2025-12-13T07:55:43.930Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "空白棱",
+      "url": "http://cyhkbl.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar_without_background.png"><link rel="canonical" href="http://cyhkbl.github.io/2025/12/10/Piracy/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><meta name="google-site-verification" content="Go4z1bAooM4jOaNaQyX4uphfmNLULqYuGZ1pElKd8t4"/><link rel="stylesheet" href="/css/index.css?v=5.5.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Piracy',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.1"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/themes/blue/pace-theme-minimal.css"/><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/piracy.webp);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar_without_background.png" alt="Logo"><span class="site-name">空白棱的小站</span></a><a class="nav-page-title" href="/"><span class="site-name">Piracy</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa-solid fa-house"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa-solid fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa-solid fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa-solid fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Piracy</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2025-12-10T10:57:05.000Z" title="发表于 2025-12-10 18:57:05">2025-12-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">319</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Piracy"><a href="#Piracy" class="headerlink" title="Piracy"></a>Piracy</h1><blockquote>
+<p>声明：本文仅供逆向以及密码学学习者技术研究的资源查找。请勿将本文内容用于任何非法活动。</p>
+</blockquote>
+<h2 id="Windows激活工具"><a href="#Windows激活工具" class="headerlink" title="Windows激活工具"></a>Windows激活工具</h2><p><strong>Microsoft Activation Scripts (MAS)：</strong> <a target="_blank" rel="noopener" href="https://massgrave.dev/">https://massgrave.dev</a></p>
+<p><strong>云萌 Windows 10+ 激活工具：</strong> <a target="_blank" rel="noopener" href="https://github.com/TGSAN/CMWTAT_Digital_Edition">https://github.com/TGSAN/CMWTAT_Digital_Edition</a></p>
+<p><strong>KMS.CX：</strong> <a target="_blank" rel="noopener" href="https://kms.cx/">https://kms.cx/</a></p>
+<p><strong>Py-KMS（大规模部署使用）：</strong> <a target="_blank" rel="noopener" href="https://github.com/Py-KMS-Organization/py-kms">https://github.com/Py-KMS-Organization/py-kms</a></p>
+<p><strong>Docker-KMS（大规模部署使用）：</strong> <a target="_blank" rel="noopener" href="https://github.com/11notes/docker-kms">https://github.com/11notes/docker-kms</a></p>
+<h2 id="Office激活工具"><a href="#Office激活工具" class="headerlink" title="Office激活工具"></a>Office激活工具</h2><p><strong>Microsoft Activation Scripts (MAS)：</strong> <a target="_blank" rel="noopener" href="https://massgrave.dev/">https://massgrave.dev</a></p>
+<p><strong>Ohook：</strong> <a target="_blank" rel="noopener" href="https://github.com/asdcorp/ohook">https://github.com/asdcorp/ohook</a></p>
+<p><strong>LKY Office Tools：</strong> <a target="_blank" rel="noopener" href="https://github.com/OdysseusYuan/LKY_OfficeTools">https://github.com/OdysseusYuan/LKY_OfficeTools</a></p>
+<p><strong>KMS.CX：</strong> <a target="_blank" rel="noopener" href="https://kms.cx/">https://kms.cx/</a></p>
+<p><strong>Py-KMS（大规模部署使用）：</strong> <a target="_blank" rel="noopener" href="https://github.com/Py-KMS-Organization/py-kms">https://github.com/Py-KMS-Organization/py-kms</a></p>
+<p><strong>Docker-KMS（大规模部署使用）：</strong> <a target="_blank" rel="noopener" href="https://github.com/11notes/docker-kms">https://github.com/11notes/docker-kms</a></p>
+<h2 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h2><h3 id="PC"><a href="#PC" class="headerlink" title="PC"></a>PC</h3><p><strong>Scene 组织：</strong> CPY&#x2F;Conspir4cy、CODEX、RELOADED、SKIDROW、STEAMPUNKS、DARKSiDERS、CODEPUNKS、SiMPLEX、PLAZA、TiNYiSO、OUTLAWS、BAT、Razor1911、WaLMaRT、PROPHET、SMACKs、ACTiVATED、ALiAS、F4CG、DELiGHT、Unleashed、HI2U、I_KnoW、ZEKE、HOODLUM、PARADOX、RUNE、TENOKE</p>
+<p><strong>P2P破解者：</strong> Baldman、ALI213、c000005&#x2F;EMPRESS、osb79、LOOTBOX、Steam006、Potato_Of_Doom、Voksi&#x2F;REVOLT&#x2F;RVT、Mkdev、T0x1c、Fisher、3DM、Mr. Goldberg、DELUSIONAL</p>
+<p><strong>Repacker：</strong> ElAmigos、Kaos、RG Mechanics、Fitgirl、MrDJ、xatab、Dzrepackteam、REALiTY、Darck、NORO、x.X.RIDDICK.X.x、DODI、Masquerade（现为 Kaos 的一部分）、Scooter Repacks</p>
+<p><strong>发布网站：</strong> </p>
+<p><a target="_blank" rel="noopener" href="https://small-games.info/">small-games.info</a></p>
+<p><a target="_blank" rel="noopener" href="https://kaoskrew.org/">kaoskrew.org</a></p>
+<p><a target="_blank" rel="noopener" href="https://fitgirl-repacks.site/">fitgirl-repacks.site</a></p>
+<p><a target="_blank" rel="noopener" href="https://cs.rin.ru/forum">cs.rin.ru&#x2F;forum</a></p>
+<p><a target="_blank" rel="noopener" href="https://zamunda.net/">zamunda.net</a></p>
+<p><a target="_blank" rel="noopener" href="https://rutracker.org/">rutracker.org</a></p>
+<p><a target="_blank" rel="noopener" href="https://rlsbb.ru/">rlsbb.ru</a></p>
+<p><a target="_blank" rel="noopener" href="https://ovagames.com/">ovagames.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://compucalitv.com/">compucalitv.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://rihnogames.com/">rihnogames.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://dlfox.com/">dlfox.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://downloadha.com/">downloadha.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://torrminatorr.com/">torrminatorr.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://elamigos.site/">elamigos.site</a></p>
+<p><a target="_blank" rel="noopener" href="https://gog-games.com/">gog-games.com</a></p>
+<p><a target="_blank" rel="noopener" href="https://online-fix.me/">online-fix.me</a></p>
+<p><a target="_blank" rel="noopener" href="https://dodi-repacks.site/">dodi-repacks.site</a></p>
+<p><a target="_blank" rel="noopener" href="https://rutor.info/">rutor.info</a></p>
+<p><a target="_blank" rel="noopener" href="https://rutor.is/">rutor.is</a></p>
+<p><a target="_blank" rel="noopener" href="https://torrentgalaxy.to/">torrentgalaxy.to</a></p>
+<p><a target="_blank" rel="noopener" href="https://gamebounty.world/">gamebounty.world</a></p>
+<p><a target="_blank" rel="noopener" href="https://steam-cracked.com/">steam-cracked.com</a></p>
+<p><strong>Steam：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.steamtools.net/">Steamtools</a></p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><p><strong>发布网站：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://lemmy.dbzer0.com/c/GenP">Adobe GenP</a></p>
+</article><div class="tag_share"></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/12/13/%E6%96%87%E5%AD%97%E8%B5%84%E6%96%99%E7%94%B5%E5%AD%90%E5%8C%96/" title="文字资料电子化"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/book.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">文字资料电子化</div></div></div></a><a class="pagination-related  no-desc" href="/2025/12/07/%E5%AD%A6%E7%94%9F%E8%96%85%E7%BE%8A%E6%AF%9B%E6%8C%87%E5%8D%97/" title="学生薅羊毛指南"><img class="cover" src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/stu.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">学生薅羊毛指南</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">空白棱</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://cyhkbl.github.io/atom.xml" target="_blank" title="RSS"><i class="fa-solid fa-square-rss" style="color: #24292e;"></i></a><a class="social-icon" href="https://beacons.ai/cyh714" target="_blank" title="Social Links"><i class="fa-solid fa-link" style="color: #24292e;"></i></a><a class="social-icon" href="/chenyiheng070104@outlook.com" target="_blank" title="Email"><i class="fa-solid fa-envelope" style="color: #24292e;"></i></a><a class="social-icon" href="https://github.com/cyhkbl" target="_blank" title="Github"><i class="fa-brands fa-square-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Piracy"><span class="toc-number">1.</span> <span class="toc-text">Piracy</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7"><span class="toc-number">1.1.</span> <span class="toc-text">Windows激活工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Office%E6%BF%80%E6%B4%BB%E5%B7%A5%E5%85%B7"><span class="toc-number">1.2.</span> <span class="toc-text">Office激活工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F"><span class="toc-number">1.3.</span> <span class="toc-text">游戏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PC"><span class="toc-number">1.3.1.</span> <span class="toc-text">PC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">软件</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/gh/cyhkbl/picture_bed@main/gx1iHW5TVDayIez.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2025 By 空白棱</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.1"></script><script src="/js/main.js?v=5.5.1"></script><div class="js-pjax"></div></div></body></html>
